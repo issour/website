@@ -6,27 +6,33 @@
         <title>Laravel</title>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+    <body class="min-h-screen bg-gray-100 antialiased xl:flex xl:flex-col xl:h-screen">
+        <header class="h-16 bg-white sm:flex sm:items-center sm:justify-between xl:flex-shrink-0 px-16">
+            <div class="flex justify-between px-4 py-3 xl:w-72 font-bold">
+                Nova Workflows
+            </div>
+            <nav class="sm:flex sm:items-center sm:px-4 xl:flex-1 xl:justify-between hidden">
+                <div class="px-2 pt-2 pb-5 border-b border-gray-800 sm:flex sm:border-b-0 sm:py-0 sm:px-0">
+                    <a href="#" class="mt-1 block px-3 py-1 rounded font-semibold text-white hover:text-gray-600 sm:mt-0 sm:text-sm sm:px-2 sm:ml-2 xl:text-gray-900">Apps</a>
+                    <a href="#" class="mt-1 block px-3 py-1 rounded font-semibold text-white hover:text-gray-600 sm:mt-0 sm:text-sm sm:px-2 sm:ml-2 xl:text-gray-900">Docs</a>
+                    <a href="#" class="mt-1 block px-3 py-1 rounded font-semibold text-white hover:text-gray-600 sm:mt-0 sm:text-sm sm:px-2 sm:ml-2 xl:text-gray-900">Request</a>
+                    <a href="#" class="mt-1 block px-3 py-1 rounded font-semibold text-white hover:text-gray-600 sm:mt-0 sm:text-sm sm:px-2 sm:ml-2 xl:text-gray-900">Github</a>
                 </div>
-            @endif
-
-            <div class="container mx-auto text-center h-screen items-center flex justify-center">
-                <div class="text-4xl font-bold">
-                    Laravel
+            </nav>
+        </header>
+        <div class="py-16 text-gray-700 flex h-screen items-center" style="background: url('images/hero.svg') no-repeat top right;">
+            <div class="w-3/5 pl-32">
+                <h1 class="text-5xl">Nova Workflows</h1>
+                <h3 class="text-3xl mb-2">Build automations within Laravel Nova</h3>
+                <h3 class="text-xl">A free Nova package with a growing list of integrations</h3>
+                <hr>
+                <div class="py-8">
+                    <a href="/docs/installation" class="rounded-lg px-6 py-3 bg-white hover:bg-gray-100 md:text-lg xl:text-base text-gray-700 font-semibold leading-tight shadow-md">Get Started</a>
                 </div>
             </div>
+        </div>
+        <div>
+
         </div>
     </body>
 </html>
