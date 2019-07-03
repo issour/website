@@ -16,7 +16,7 @@
         <div class="flex flex-wrap -mb-4 p-8 -mx-8">
             @foreach($workflows as $workflow)
                 <div class="w-1/4 mb-4 border rounded p-4 bg-white ">
-                    <a href="{{ route('workflows.show', $workflow) }}">
+                    <a href="{{ route('workflows.show', $workflow->slug) }}">
                         @if($workflow->image)
                             <img src="{{ $workflow->image }}" alt="{{ $workflow->title }}" class="mb-2">
                         @endif

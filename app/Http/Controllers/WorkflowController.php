@@ -14,10 +14,10 @@ class WorkflowController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($slug)
     {
         return view('workflows.show', [
-            'workflow' => Workflow::findOrFail($id)
+            'workflow' => Workflow::bySlug($slug)
         ]);
     }
 }

@@ -21,6 +21,11 @@ class Workflow extends Model
         })->latest();
     }
 
+    public static function bySlug($slug)
+    {
+        return self::where('slug', $slug)->firstOrFail();
+    }
+
     public function app()
     {
         return $this->belongsTo(App::class);

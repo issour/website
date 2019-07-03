@@ -16,4 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('workflows', 'WorkflowController@index')->name('workflows.index');
-Route::get('workflows/{id}', 'WorkflowController@show')->name('workflows.show');
+Route::get('workflows/{slug}', 'WorkflowController@show')->name('workflows.show');
