@@ -19,6 +19,7 @@ class CreateWorkflowsTable extends Migration
             $table->string('image');
             $table->string('banner');
             $table->string('title');
+            $table->string('slug');
             $table->string('blurb');
             $table->text('description');
             $table->string('repository');
