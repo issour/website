@@ -20,6 +20,7 @@
                         @if($workflow->image)
                             <img src="{{ $workflow->image }}" alt="{{ $workflow->title }}" class="mb-2">
                         @endif
+                        <span>{{ $workflow->app->title }}</span>
                         <h3 class="text-2xl">{{ $workflow->title }}</h3>
                         <p>{{ $workflow->blurb }}</p>
                     </a>

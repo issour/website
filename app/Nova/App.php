@@ -2,31 +2,29 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Panel;
+use App\Nova\Workflow;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Workflow extends Resource
+class App extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Workflow';
+    public static $model = 'App\App';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -34,7 +32,7 @@ class Workflow extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'title'
+        'id', 'title',
     ];
 
     /**
@@ -47,18 +45,10 @@ class Workflow extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Title')->rules('required'),
-            Text::make('Blurb')->rules('required'),
-            Textarea::make('Description')->rules('required'),
-            Text::make('Repository')->rules('required', 'url'),
-            BelongsTo::make('App'),
-            DateTime::make('Published At'),
-
-            (new Panel('Images', [
-                Image::make('Icon'),
-                Image::make('Image'),
-                Image::make('Banner'),
-            ])),
+            Text::make('Title'),
+            Text::make('Blurb'),
+            Image::make('Image'),
+            HasMany::make('Workflows', 'workflows', Workflow::class),
         ];
     }
 

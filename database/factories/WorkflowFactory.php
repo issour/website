@@ -2,6 +2,7 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
+use App\App;
 use App\Workflow;
 use Faker\Generator as Faker;
 
@@ -15,5 +16,6 @@ $factory->define(Workflow::class, function (Faker $faker) {
         'icon' => 'https://placehold.it/24x24&text=icon',
         'image' => 'https://placehold.it/300x250&text=image',
         'banner' => 'https://placehold.it/900x350&text=banner',
+        'app_id' => factory(App::class),
     ];
 });

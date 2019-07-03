@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Workflow extends Model
 {
+    public $with = ['app'];
+
     public $casts = [
         'published_at' => 'datetime',
     ];
@@ -13,7 +15,14 @@ class Workflow extends Model
     public function scopeFiltered($query)
     {
         $query->when(request('search'), function ($query, $term) {
-            $query->where('title', 'LIKE', "%$term%");
+            $query->whereHas('app', function ($query) use ($term) {
+                $query->where('title', 'LIKE', "%$term%");
+            })->orWhere('title', 'LIKE', "%$term%");
         })->latest();
+    }
+
+    public function app()
+    {
+        return $this->belongsTo(App::class);
     }
 }
