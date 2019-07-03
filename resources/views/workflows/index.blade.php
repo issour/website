@@ -10,7 +10,7 @@
                 </svg>
             </div>
             <form action="/workflows">
-                <input placeholder="Search workflows" name="search" value="{{ request('search') }}" class="block w-full border border-transparent bg-white focus:outline-none  focus:border-gray-300 text-gray-900 rounded-lg pl-10 pr-4 py-2">
+                <input type="search" placeholder="Search workflows" name="search" value="{{ request('search') }}" class="block w-full border border-transparent bg-white focus:outline-none  focus:border-gray-300 text-gray-900 rounded-lg pl-10 pr-4 py-2">
             </form>
         </div>
         <div class="flex flex-wrap -mb-4 p-8 -mx-8">
