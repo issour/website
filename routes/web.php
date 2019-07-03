@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('workflows', 'WorkflowController@index')->name('workflows.index');
+Route::get('workflows/{id}', 'WorkflowController@show')->name('workflows.show');
