@@ -2,8 +2,14 @@
 
 @section('content')
     <div class="bg-gray-900">
-        <div class="container mx-auto py-8">
-            <h1 class="text-3xl text-white">{{ $workflow->title }}</h1>
+        <div class="flex container mx-auto py-8 text-white items-center">
+            <div class="mr-4">
+                <img src="/{{ $workflow->app->image }}" alt="Laravel {{ $workflow->app->title }} Integration" class="w-16">
+            </div>
+            <div>
+                <h1 class="text-3xl">{{ $workflow->title }}</h1>
+                <span>{{ $workflow->app->title }}</span>
+            </div>
         </div>
     </div>
     <div class="container mx-auto pt-4 flex">
