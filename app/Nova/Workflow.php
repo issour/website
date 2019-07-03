@@ -48,6 +48,7 @@ class Workflow extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Title')->rules('required'),
+            Text::make('Slug')->rules('required', 'alpha_dash', 'unique:workflows,slug'),
             Text::make('Blurb')->rules('required'),
             Textarea::make('Description')->rules('required'),
             Text::make('Repository')->rules('required', 'url')->hideFromIndex(),

@@ -45,7 +45,8 @@ class App extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Title'),
+            Text::make('Title')->rules('required'),
+            Text::make('Slug')->rules('required', 'alpha_dash', 'unique:apps,slug'),
             Text::make('Blurb'),
             Image::make('Image'),
             HasMany::make('Workflows', 'workflows', Workflow::class),
