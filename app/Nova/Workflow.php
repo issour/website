@@ -50,14 +50,14 @@ class Workflow extends Resource
             Text::make('Title')->rules('required'),
             Text::make('Blurb')->rules('required'),
             Textarea::make('Description')->rules('required'),
-            Text::make('Repository')->rules('required', 'url'),
+            Text::make('Repository')->rules('required', 'url')->hideFromIndex(),
             BelongsTo::make('App'),
             DateTime::make('Published At'),
 
             (new Panel('Images', [
-                Image::make('Icon'),
-                Image::make('Image'),
-                Image::make('Banner'),
+                Image::make('Icon')->hideFromIndex(),
+                Image::make('Image')->hideFromIndex(),
+                Image::make('Banner')->hideFromIndex(),
             ])),
         ];
     }
