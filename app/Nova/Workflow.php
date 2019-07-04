@@ -66,12 +66,9 @@ class Workflow extends Resource
             BelongsTo::make('App'),
             DateTime::make('Published At'),
 
-            Text::make('Youtube'),
-
-            (new Panel('Import', [
-                Text::make('Outcome')->hideFromIndex(),
-                KeyValue::make('Options'),
-            ])),
+            Text::make('Youtube')->hideFromIndex(),
+            Text::make('Outcome')->hideFromIndex(),
+            KeyValue::make('Options'),
 
             (new Panel('Images', [
                 Image::make('Icon')->hideFromIndex(),
