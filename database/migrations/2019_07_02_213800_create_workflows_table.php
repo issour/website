@@ -25,6 +25,8 @@ class CreateWorkflowsTable extends Migration
             $table->string('repository');
             $table->integer('stars')->default(0);
             $table->integer('issues')->default(0);
+            $table->string('outcome')->nullable();
+            $table->json('options')->nullable();
             $table->integer('app_id');
             $table->timestamps();
             $table->timestamp('published_at')->nullable();

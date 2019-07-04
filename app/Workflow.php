@@ -10,6 +10,7 @@ class Workflow extends Model
     public $with = ['app'];
 
     public $casts = [
+        'options' => 'array',
         'published_at' => 'datetime',
     ];
 

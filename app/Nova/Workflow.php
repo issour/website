@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\KeyValue;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -63,6 +64,11 @@ class Workflow extends Resource
             Number::make('Issues')->onlyOnDetail(),
             BelongsTo::make('App'),
             DateTime::make('Published At'),
+
+            (new Panel('Import', [
+                Text::make('Outcome')->hideFromIndex(),
+                KeyValue::make('Options'),
+            ])),
 
             (new Panel('Images', [
                 Image::make('Icon')->hideFromIndex(),
