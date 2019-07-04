@@ -5,6 +5,7 @@ namespace App\Nova;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Number;
@@ -64,6 +65,8 @@ class Workflow extends Resource
             Number::make('Issues')->onlyOnDetail(),
             BelongsTo::make('App'),
             DateTime::make('Published At'),
+
+            Text::make('Youtube'),
 
             (new Panel('Import', [
                 Text::make('Outcome')->hideFromIndex(),

@@ -22,6 +22,7 @@ class CreateWorkflowsTable extends Migration
             $table->string('slug');
             $table->string('blurb');
             $table->text('description');
+            $table->string('youtube')->nullable();
             $table->string('repository');
             $table->integer('stars')->default(0);
             $table->integer('issues')->default(0);

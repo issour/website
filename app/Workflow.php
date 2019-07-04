@@ -53,6 +53,11 @@ class Workflow extends Model
         Storage::put("workflows/{$this->id}.json", json_encode($properties));
     }
 
+    public function youtubeEmbedUrl()
+    {
+        return 'https://www.youtube.com/embed/' . Arr::get(explode('?v=', $this->youtube), 1);
+    }
+
     public function app()
     {
         return $this->belongsTo(App::class);

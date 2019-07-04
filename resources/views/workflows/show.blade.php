@@ -38,6 +38,14 @@
                     php artisan workflow:import {{ $workflow->id }}
                 </blockquote>
             </div>
+
+            @if($workflow->youtube)
+                <div class="mb-3">
+                    <h3 class="text-3xl">Video: {{ $workflow->title }} walkthrough</h3>
+                    <p class="mb-3">This video will walk you through setup & basic usage of this integration</p>
+                    <iframe class="w-full" height="500" src="{{ $workflow->youtubeEmbedUrl() }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            @endif
         </div>
         <div class="w-1/5">
             <h1>Ad</h1>
