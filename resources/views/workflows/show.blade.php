@@ -30,6 +30,14 @@
             <div class="flex flex-wrap -mb-4 p-8 -mx-8">
                 <div>{{ $workflow->description }}</div>
             </div>
+            <div class="mb-3">
+                <h3 class="text-3xl">Import workflow options</h3>
+                <p>Running the following command will create a workflow with all the available options</p>
+                <p class="mb-3">This saves time by not having to reference and type each option.</p>
+                <blockquote class="bg-gray-800 text-white rounded-lg p-4">
+                    php artisan workflow:import {{ $workflow->id }}
+                </blockquote>
+            </div>
         </div>
         <div class="w-1/5">
             <h1>Ad</h1>
