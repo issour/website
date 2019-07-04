@@ -41,6 +41,13 @@ class Workflow extends Model
         ]);
     }
 
+    public function storeImport()
+    {
+        $properties = Arr::only($this->toArray(), ['title', 'outcome', 'options']);
+
+        Storage::put("workflows/{$this->id}.json", json_encode($properties));
+    }
+
     public function app()
     {
         return $this->belongsTo(App::class);
