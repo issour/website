@@ -33,7 +33,7 @@
             </div>
             <div class="mb-6">
                 <h3 class="text-3xl">Overview</h3>
-                <div>{!! $workflow->description !!}</div>
+                <div class="markdown-body">{!! $workflow->description !!}</div>
             </div>
             <div class="mb-6">
                 <h3 class="text-3xl">Installation</h3>
@@ -41,7 +41,7 @@
                     composer require {{ $workflow->repository }}
                 </blockquote>
 
-                <div>{!! $workflow->installation !!}</div>
+                <div class="markdown-body">{!! $workflow->installation !!}</div>
             </div>
             <div class="mb-6">
                 <h3 class="text-3xl">Import workflow options</h3>
