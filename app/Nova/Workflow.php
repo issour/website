@@ -57,8 +57,8 @@ class Workflow extends Resource
                 ->updateRules('unique:workflows,slug,{{resourceId}}')
                 ->hideFromIndex(),
             Text::make('Blurb')->rules('required'),
-            Markdown::make('Description')->rules('required'),
-            Markdown::make('Installation')->rules('required'),
+            Markdown::make('Description', 'description_markdown')->rules('required'),
+            Markdown::make('Installation', 'installation_markdown')->rules('required'),
             Text::make('Repository')->displayUsing(function () {
                 return '<a href="https://github.com/'.$this->repository.'" class="no-underline font-bold dim text-primary" target="_blank">'.$this->repository.'</a>';
             })->rules('required')->hideFromIndex()->asHtml(),

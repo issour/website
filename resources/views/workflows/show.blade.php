@@ -29,13 +29,15 @@
             </div>
             <div class="mb-6">
                 <h3 class="text-3xl">Overview</h3>
-                <div>{{ $workflow->description }}</div>
+                <div>{!! $workflow->description !!}</div>
             </div>
             <div class="mb-6">
                 <h3 class="text-3xl">Installation</h3>
                 <blockquote class="bg-gray-800 text-white rounded-lg p-4">
                     composer require {{ $workflow->repository }}
                 </blockquote>
+
+                <div>{!! $workflow->installation !!}</div>
             </div>
             <div class="mb-6">
                 <h3 class="text-3xl">Import workflow options</h3>
