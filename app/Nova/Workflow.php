@@ -52,7 +52,8 @@ class Workflow extends Resource
             Text::make('Slug')
                 ->rules('required', 'alpha_dash')
                 ->creationRules('unique:workflows,slug,{{resourceId}}')
-                ->updateRules('unique:workflows,slug,{{resourceId}}'),
+                ->updateRules('unique:workflows,slug,{{resourceId}}')
+                ->hideFromIndex(),
             Text::make('Blurb')->rules('required'),
             Textarea::make('Description')->rules('required'),
             Text::make('Repository')->displayUsing(function () {

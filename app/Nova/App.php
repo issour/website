@@ -49,7 +49,8 @@ class App extends Resource
             Text::make('Slug')
                 ->rules('required', 'alpha_dash')
                 ->creationRules('unique:apps,slug,{{resourceId}}')
-                ->updateRules('unique:apps,slug,{{resourceId}}'),
+                ->updateRules('unique:apps,slug,{{resourceId}}')
+                ->hideFromIndex(),
             Text::make('Blurb'),
             Image::make('Image'),
             HasMany::make('Workflows', 'workflows', Workflow::class),
