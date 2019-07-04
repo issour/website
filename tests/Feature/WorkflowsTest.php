@@ -45,4 +45,19 @@ class WorkflowsTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee("No workflows found");
     }
+
+    public function testStoringImportsOfWorkflows()
+    {
+        $workflow = factory(Workflow::class)->create();
+
+        $response = $this->json('GET', "import/workflows/{$workflow->id}.json");
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'title' => $workflow->title,
+                'outcome' => $workflow->outcome,
+                'options' => $workflow->options,
+            ]);
+    }
 }
