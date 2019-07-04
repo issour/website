@@ -54,7 +54,9 @@ class Workflow extends Resource
                 ->updateRules('unique:workflows,slug,{{resourceId}}'),
             Text::make('Blurb')->rules('required'),
             Textarea::make('Description')->rules('required'),
-            Text::make('Repository')->rules('required', 'url')->hideFromIndex(),
+            Text::make('Repository')->displayUsing(function () {
+                return '<a href="https://github.com/'.$this->repository.'" class="no-underline font-bold dim text-primary" target="_blank">'.$this->repository.'</a>';
+            })->rules('required')->hideFromIndex()->asHtml(),
             BelongsTo::make('App'),
             DateTime::make('Published At'),
 
