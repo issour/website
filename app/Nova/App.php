@@ -46,7 +46,10 @@ class App extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Title')->rules('required'),
-            Text::make('Slug')->rules('required', 'alpha_dash', 'unique:apps,slug'),
+            Text::make('Slug')
+                ->rules('required', 'alpha_dash')
+                ->creationRules('unique:apps,slug,{{resourceId}}')
+                ->updateRules('unique:apps,slug,{{resourceId}}'),
             Text::make('Blurb'),
             Image::make('Image'),
             HasMany::make('Workflows', 'workflows', Workflow::class),
