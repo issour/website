@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Workflow extends Model
 {
@@ -30,6 +31,10 @@ class Workflow extends Model
 
     public function updateGithubData()
     {
+        if (app()->environment('testing')) {
+            return $this;
+        }
+
         $opts = ['http' => ['method' => 'GET','header' => ['User-Agent: PHP']]];
 
         $context = stream_context_create($opts);
