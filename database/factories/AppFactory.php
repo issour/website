@@ -8,6 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(App::class, function (Faker $faker) {
     return [
         'title' => $faker->word,
+        'slug' => Str::slug($faker->word),
         'image' => 'htts://placehold.it/400x300',
         'blurb' => $faker->words(10, true),
     ];

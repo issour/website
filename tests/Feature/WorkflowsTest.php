@@ -24,7 +24,7 @@ class WorkflowsTest extends TestCase
     {
         $workflow = factory(Workflow::class)->create();
 
-        $response = $this->get('/workflows/' . $workflow->id);
+        $response = $this->get('/workflows/' . $workflow->slug);
 
         $response->assertStatus(200);
         $response->assertSee(Workflow::first()->title);

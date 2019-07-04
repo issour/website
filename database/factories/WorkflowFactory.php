@@ -4,11 +4,13 @@
 
 use App\App;
 use App\Workflow;
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(Workflow::class, function (Faker $faker) {
     return [
         'title' => $faker->bs,
+        'slug' => Str::slug($faker->bs),
         'blurb' => $faker->text,
         'description' => $faker->text,
         'repository' => "https://github.com/{$faker->username}/{$faker->domainWord}",
