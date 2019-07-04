@@ -11,7 +11,7 @@ use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\KeyValue;
-use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -57,7 +57,8 @@ class Workflow extends Resource
                 ->updateRules('unique:workflows,slug,{{resourceId}}')
                 ->hideFromIndex(),
             Text::make('Blurb')->rules('required'),
-            Textarea::make('Description')->rules('required'),
+            Markdown::make('Description')->rules('required'),
+            Markdown::make('Installation')->rules('required'),
             Text::make('Repository')->displayUsing(function () {
                 return '<a href="https://github.com/'.$this->repository.'" class="no-underline font-bold dim text-primary" target="_blank">'.$this->repository.'</a>';
             })->rules('required')->hideFromIndex()->asHtml(),
