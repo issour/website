@@ -27,22 +27,54 @@
                     </span>
                 </a>
             </div>
-            <div class="flex flex-wrap -mb-4 p-8 -mx-8">
+            <div class="mb-6">
+                <h3 class="text-3xl">Overview</h3>
                 <div>{{ $workflow->description }}</div>
             </div>
-            <div class="mb-3">
+            <div class="mb-6">
+                <h3 class="text-3xl">Installation</h3>
+                <blockquote class="bg-gray-800 text-white rounded-lg p-4">
+                    composer require {{ $workflow->repository }}
+                </blockquote>
+            </div>
+            <div class="mb-6">
                 <h3 class="text-3xl">Import workflow options</h3>
                 <p>Running the following command will create a workflow with all the available options</p>
-                <p class="mb-3">This saves time by not having to reference and type each option.</p>
+                <p class="mb-6">This saves time by not having to reference and type each option.</p>
                 <blockquote class="bg-gray-800 text-white rounded-lg p-4">
                     php artisan workflow:import {{ $workflow->id }}
                 </blockquote>
             </div>
 
+            <div class="mb-6">
+                <h3 class="text-3xl">Options</h3>
+                <div class="relative rounded-t-lg rounded-b-lg shadow overflow-hidden" style="background-clip: border-box;">
+                    <div class="flex border-b">
+                        <div class="w-48 uppercase font-bold text-xs tracking-wide px-3 py-3">
+                            Key
+                        </div>
+                        <div class="flex-grow uppercase font-bold text-xs tracking-wide px-3 py-3 border-l">
+                            Description
+                        </div>
+                    </div>
+
+                    @foreach($workflow->options as $key => $value)
+                        <div class="bg-white flex border-b">
+                            <div class="w-48 font-mono text-xs tracking-wide px-3 py-3">
+                                {{ $key }}
+                            </div>
+                            <div class="flex-grow font-mono text-xs tracking-wide px-3 py-3 border-l">
+                                {{ $value }}
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
             @if($workflow->youtube)
-                <div class="mb-3">
+                <div class="mb-6">
                     <h3 class="text-3xl">Video: {{ $workflow->title }} walkthrough</h3>
-                    <p class="mb-3">This video will walk you through setup & basic usage of this integration</p>
+                    <p class="mb-6">This video will walk you through setup & basic usage of this integration</p>
                     <iframe class="w-full" height="500" src="{{ $workflow->youtubeEmbedUrl() }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             @endif
