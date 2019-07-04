@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('head')
+<link rel="stylesheet" href="{{ mix('css/markdown.css') }}">
+@endpush
+
 @section('content')
     <div class="bg-gray-900">
         <div class="flex container mx-auto py-8 text-white items-center">

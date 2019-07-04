@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Nova Workflows</title>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        @stack('head')
     </head>
     <body class="min-h-screen bg-gray-100 antialiased xl:flex xl:flex-col xl:h-screen">
         <header class="h-16 bg-white sm:flex sm:items-center sm:justify-between xl:flex-shrink-0 px-16">
