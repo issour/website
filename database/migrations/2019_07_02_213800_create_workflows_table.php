@@ -23,6 +23,8 @@ class CreateWorkflowsTable extends Migration
             $table->string('blurb');
             $table->text('description');
             $table->string('repository');
+            $table->integer('stars')->default(0);
+            $table->integer('issues')->default(0);
             $table->integer('app_id');
             $table->timestamps();
             $table->timestamp('published_at')->nullable();

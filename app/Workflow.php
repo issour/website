@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 
 class Workflow extends Model
@@ -24,6 +25,16 @@ class Workflow extends Model
     public static function bySlug($slug)
     {
         return self::where('slug', $slug)->firstOrFail();
+    }
+
+    public function updateGithubData()
+    {
+        $results = json_decode(file_get_contents("https://api.github.com/repos/$this->repository"), true);
+
+        return $this->update([
+            'stars' => Arr::get($results, 'stargazers_count', 0),
+            'issues' => Arr::get($results, 'open_issues', 0),
+        ]);
     }
 
     public function app()
