@@ -57,6 +57,8 @@ class Workflow extends Resource
             Text::make('Repository')->displayUsing(function () {
                 return '<a href="https://github.com/'.$this->repository.'" class="no-underline font-bold dim text-primary" target="_blank">'.$this->repository.'</a>';
             })->rules('required')->hideFromIndex()->asHtml(),
+            Number::make('Stars')->onlyOnDetail(),
+            Number::make('Issues')->onlyOnDetail(),
             BelongsTo::make('App'),
             DateTime::make('Published At'),
 
