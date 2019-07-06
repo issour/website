@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::get('workflows', 'WorkflowController@index')->name('workflows.index');
 Route::get('workflows/{slug}', 'WorkflowController@show')->name('workflows.show');
 Route::get('import/workflows/{id}.json', 'ImportController@show')->name('imports.show');
+Route::get('recipes/{slug}', 'RecipeController@show')->name('recipes.show');
