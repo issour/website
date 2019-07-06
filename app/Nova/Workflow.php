@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Laravel\Nova\Panel;
+use NovaErrorField\Errors;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Code;
@@ -49,6 +50,7 @@ class Workflow extends Resource
     public function fields(Request $request)
     {
         return [
+            Errors::make(),
             ID::make()->sortable(),
             Text::make('Title')->rules('required'),
             Text::make('Slug')
@@ -64,11 +66,11 @@ class Workflow extends Resource
             })->rules('required')->hideFromIndex()->asHtml(),
             Number::make('Stars')->onlyOnDetail(),
             Number::make('Issues')->onlyOnDetail(),
-            BelongsTo::make('App'),
+            BelongsTo::make('App')->rules('required'),
             DateTime::make('Published At'),
 
-            Text::make('Youtube')->hideFromIndex(),
-            Text::make('Outcome')->hideFromIndex(),
+            Text::make('Youtube')->hideFromIndex()->rules('required'),
+            Text::make('Outcome')->hideFromIndex()->rules('required'),
             KeyValue::make('Options'),
 
             (new Panel('Images', [

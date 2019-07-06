@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Workflow;
+use NovaErrorField\Errors;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -44,6 +45,7 @@ class App extends Resource
     public function fields(Request $request)
     {
         return [
+            Errors::make(),
             ID::make()->sortable(),
             Text::make('Title')->rules('required'),
             Text::make('Slug')
