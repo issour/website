@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\KeyValue;
 use Laravel\Nova\Fields\Markdown;
@@ -30,7 +31,7 @@ class Workflow extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -78,6 +79,8 @@ class Workflow extends Resource
                 Image::make('Image')->hideFromIndex(),
                 Image::make('Banner')->hideFromIndex(),
             ])),
+
+            HasMany::make('Recipes'),
         ];
     }
 

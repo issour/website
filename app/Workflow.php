@@ -62,4 +62,9 @@ class Workflow extends Model
     {
         return $this->belongsTo(App::class);
     }
+
+    public function recipes()
+    {
+        return $this->hasMany(Recipe::class);
+    }
 }

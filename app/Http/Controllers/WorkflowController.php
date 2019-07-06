@@ -16,8 +16,11 @@ class WorkflowController extends Controller
 
     public function show($slug)
     {
+        $workflow = Workflow::bySlug($slug);
+
         return view('workflows.show', [
-            'workflow' => Workflow::bySlug($slug)
+            'workflow' => $workflow,
+            'recipes' => $workflow->recipes,
         ]);
     }
 }
