@@ -90,9 +90,19 @@
                 </div>
             </div>
 
-            <div id="recipies" class="mb-6">
-                <h3 class="text-3xl mb-3">Recipies</h3>
-                <h4>Ideas on using the '{{ $workflow->title }}' workflow</h4>
+            <div id="recipies" class="mb-6 bg-white p-10">
+                <h3 class="text-3xl">Recipes</h3>
+                <h4 class="mb-3">Ideas on using the '{{ $workflow->title }}' workflow</h4>
+
+                @foreach($recipes as $recipe)
+                    <div class="border mb-3 rounded p-6 flex items-center">
+                        <img src="/{{ $workflow->image }}" alt="Laravel {{ $workflow->app->title }} Integration" class="w-16 p-2 rounded  bg-white">
+                        <a href="{{ route('recipes.show', $recipe->slug) }}" class="text-2xl ml-2">
+                            {{ $recipe->title }}
+                            <span class="block text-base text-gray-600">{{ $workflow->app->title }} / {{ $workflow->title }}</span>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
         <div class="w-1/5">
