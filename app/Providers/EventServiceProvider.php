@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Recipe;
 use App\Workflow;
+use App\Observers\RecipeObserver;
 use App\Observers\WorkflowObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -32,5 +34,6 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         Workflow::observe(WorkflowObserver::class);
+        Recipe::observe(RecipeObserver::class);
     }
 }
