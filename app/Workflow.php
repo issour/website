@@ -2,12 +2,15 @@
 
 namespace App;
 
+use App\Traits\HasSlug;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Workflow extends Model
 {
+    use HasSlug;
+
     public $with = ['app'];
 
     public $casts = [
@@ -22,11 +25,6 @@ class Workflow extends Model
                 $query->where('title', 'LIKE', "%$term%");
             })->orWhere('title', 'LIKE', "%$term%");
         })->latest();
-    }
-
-    public static function bySlug($slug)
-    {
-        return self::where('slug', $slug)->firstOrFail();
     }
 
     public function updateGithubData()
