@@ -2,7 +2,11 @@
 
 namespace App\Nova\Actions;
 
+use App\App;
+use App\Jobs\ApproveProposal;
 use Illuminate\Bus\Queueable;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Actions\Action;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Fields\ActionFields;
@@ -14,16 +18,15 @@ class Approve extends Action
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Perform the action on the given models.
-     *
-     * @param  \Laravel\Nova\Fields\ActionFields  $fields
-     * @param  \Illuminate\Support\Collection  $models
-     * @return mixed
-     */
-    public function handle(ActionFields $fields, Collection $models)
+    public $onlyOnDetail = true;
+
+    public function handle(ActionFields $fields, Collection $proposals)
     {
-        $models->each->update(['approved_at' => now()]);
+        $proposal = $proposals->first();
+
+        $proposal->update(['approved_at' => now()]);
+
+        dispatch(new CreateRepository($proposal, $fields->toArray()));
     }
 
     /**
@@ -33,6 +36,14 @@ class Approve extends Action
      */
     public function fields()
     {
-        return [];
+        return [
+            Select::make('App')
+                ->options(App::all()->pluck('title', 'id'))
+                ->rules('required'),
+
+            Text::make('Repository')
+                ->rules('required', 'alpha_dash')
+                ->help('ie gmail-outcome'),
+        ];
     }
 }
