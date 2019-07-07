@@ -13,14 +13,14 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class WorkflowRequest extends Resource
+class Proposal extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\WorkflowRequest';
+    public static $model = 'App\Proposal';
 
     /**
      * The single value that should be used to represent the resource when being displayed.

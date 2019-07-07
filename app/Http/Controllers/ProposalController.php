@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\WorkflowRequest;
+use App\Proposal;
 use Illuminate\Http\Request;
 
-class WorkflowRequestController extends Controller
+class ProposalController extends Controller
 {
     public function create()
     {
@@ -20,7 +20,7 @@ class WorkflowRequestController extends Controller
             'url' => ['required','url'],
         ]);
 
-        WorkflowRequest::create(
+        Proposal::create(
             $request->only(['title', 'description', 'url'])
         );
 

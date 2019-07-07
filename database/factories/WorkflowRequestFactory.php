@@ -2,10 +2,10 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\WorkflowRequest;
+use App\Proposal;
 use Faker\Generator as Faker;
 
-$factory->define(WorkflowRequest::class, function (Faker $faker) {
+$factory->define(Proposal::class, function (Faker $faker) {
     return [
         'title' => $faker->bs,
         'description' => $faker->paragraph,

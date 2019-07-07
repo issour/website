@@ -23,5 +23,5 @@ Route::get('recipes/{slug}', 'RecipeController@show')->name('recipes.show');
 Route::get('login/github', 'LoginController@redirect')->name('login.github');
 Route::get('login/github/callback', 'LoginController@callback');
 
-Route::get('new', 'WorkflowRequestController@create');
-Route::post('new', 'WorkflowRequestController@store');
+Route::get('new', 'ProposalController@create');
+Route::post('new', 'ProposalController@store');

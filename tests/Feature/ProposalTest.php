@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Proposal;
 use Tests\TestCase;
-use App\WorkflowRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class WorkflowRequestTest extends TestCase
+class ProposalTest extends TestCase
 {
     public function testViewingRequestForm()
     {
@@ -75,7 +75,7 @@ class WorkflowRequestTest extends TestCase
 
         $response->assertSessionHas('status', 'success');
 
-        $requests = WorkflowRequest::all();
+        $requests = Proposal::all();
 
         $this->assertCount(1, $requests);
         $this->assertEquals('Send Gmail Message', $requests[0]->title);

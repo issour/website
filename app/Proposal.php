@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WorkflowRequest extends Model
+class Proposal extends Model
 {
     public $appends = ['status'];
 
