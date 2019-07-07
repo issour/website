@@ -24,7 +24,7 @@
                 <div class="px-2 pt-2 pb-5 border-b border-gray-800 sm:flex sm:border-b-0 sm:py-0 sm:px-0">
                     <a href="/workflows" class="mt-1 block px-3 py-1 rounded font-semibold text-white hover:text-gray-600 sm:mt-0 sm:text-sm sm:px-2 sm:ml-2 xl:text-gray-900">Apps</a>
                     <a href="#" class="mt-1 block px-3 py-1 rounded font-semibold text-white hover:text-gray-600 sm:mt-0 sm:text-sm sm:px-2 sm:ml-2 xl:text-gray-900">Docs</a>
-                    <a href="#" class="mt-1 block px-3 py-1 rounded font-semibold text-white hover:text-gray-600 sm:mt-0 sm:text-sm sm:px-2 sm:ml-2 xl:text-gray-900">Request</a>
+                    <a href="/new" class="mt-1 block px-3 py-1 rounded font-semibold text-white hover:text-gray-600 sm:mt-0 sm:text-sm sm:px-2 sm:ml-2 xl:text-gray-900">Request</a>
                     <a href="#" class="mt-1 block px-3 py-1 rounded font-semibold text-white hover:text-gray-600 sm:mt-0 sm:text-sm sm:px-2 sm:ml-2 xl:text-gray-900">Github</a>
                 </div>
             </nav>
