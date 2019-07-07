@@ -8,6 +8,11 @@ class Proposal extends Model
 {
     public $appends = ['status'];
 
+    public $casts = [
+        'approved_at' => 'datetime',
+        'rejected_at' => 'datetime',
+    ];
+
     public function getStatusAttribute()
     {
         if ($this->approved_at) {
