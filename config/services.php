@@ -50,6 +50,10 @@ return [
         'redirect' => env('GITHUB_CLIENT_URL'),
         'owner' => env('GITHUB_OWNER'),
         'token' => env('GITHUB_TOKEN'),
+        'author' => [
+            'name' => 'Brian Dillingham',
+            'email' => 'bdillingham88@gmail.com',
+        ]
     ],
 
 ];
