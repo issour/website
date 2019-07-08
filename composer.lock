@@ -106,16 +106,16 @@
         },
         {
             "name": "dillingham/stubs",
-            "version": "1.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dillingham/stubs.git",
-                "reference": "048a58411dc53c48a5e5bbb66e7a302093881a29"
+                "reference": "295e89d2c3fb49317321d6307425d417d729a427"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dillingham/stubs/zipball/048a58411dc53c48a5e5bbb66e7a302093881a29",
-                "reference": "048a58411dc53c48a5e5bbb66e7a302093881a29",
+                "url": "https://api.github.com/repos/dillingham/stubs/zipball/295e89d2c3fb49317321d6307425d417d729a427",
+                "reference": "295e89d2c3fb49317321d6307425d417d729a427",
                 "shasum": ""
             },
             "require": {
@@ -134,12 +134,12 @@
             "license": [
                 "MIT"
             ],
-            "description": "php stub resolver",
+            "description": "Create files, folders & content with variables",
             "keywords": [
                 "php",
                 "stub"
             ],
-            "time": "2019-07-08T15:17:27+00:00"
+            "time": "2019-07-08T18:02:26+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4794,16 +4794,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "3.0.1",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "c99e3be9d3e85f60646f152f9002d46ed7770d18"
+                "reference": "c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/c99e3be9d3e85f60646f152f9002d46ed7770d18",
-                "reference": "c99e3be9d3e85f60646f152f9002d46ed7770d18",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c",
+                "reference": "c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c",
                 "shasum": ""
             },
             "require": {
@@ -4839,7 +4839,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2018-10-30T05:52:18+00:00"
+            "time": "2019-07-08T05:24:54+00:00"
         },
         {
             "name": "phpunit/phpunit",
