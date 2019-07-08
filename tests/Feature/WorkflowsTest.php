@@ -27,8 +27,8 @@ class WorkflowsTest extends TestCase
         $response = $this->get('/workflows/' . $workflow->slug);
 
         $response->assertStatus(200);
-        $response->assertSee(Workflow::first()->title);
-        $response->assertSee(Workflow::first()->description);
+        $response->assertSee($workflow->title);
+        $response->assertSee($workflow->description);
     }
 
     public function testSearchingWorflow()
@@ -38,7 +38,7 @@ class WorkflowsTest extends TestCase
         $response = $this->get('/workflows/?search=' . $workflow->title);
 
         $response->assertStatus(200);
-        $response->assertSee(Workflow::first()->title);
+        $response->assertSee($workflow->title);
 
         $response = $this->get('/workflows/?search=somerandomness');
 
