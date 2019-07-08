@@ -46,7 +46,7 @@ class CreateRepository implements ShouldQueue
             ]
         ]);
 
-        if (200 == $response->getStatusCode()) {
+        if (201 == $response->getStatusCode()) {
             dispatch(new FillRepository(
                 $this->repository,
                 resource_path('stubs/outcome'),
