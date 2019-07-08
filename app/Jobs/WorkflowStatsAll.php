@@ -3,13 +3,15 @@
 namespace App\Jobs;
 
 use App\Workflow;
+use Illuminate\Support\Arr;
 use Illuminate\Bus\Queueable;
+use App\Jobs\WorkflowStatsSingle;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class UpdateGitubData implements ShouldQueue
+class WorkflowStatsAll implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -20,6 +22,12 @@ class UpdateGitubData implements ShouldQueue
      */
     public function handle()
     {
-        Workflow::all()->each->updateGithubData();
+        if (app()->environment('testing')) {
+            return;
+        }
+
+        Workflow::each(function ($workflow) {
+            dispatch(new WorkflowStatsSingle($workflow));
+        });
     }
 }

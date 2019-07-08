@@ -3,13 +3,15 @@
 namespace App\Observers;
 
 use Illuminate\Mail\Markdown;
+use App\Jobs\WorkflowStatsSingle;
 
 class WorkflowObserver
 {
     public function created($workflow)
     {
         $workflow->storeImport();
-        $workflow->updateGithubData();
+
+        dispatch(new WorkflowStatsSingle($workflow));
     }
 
     public function saving($workflow)

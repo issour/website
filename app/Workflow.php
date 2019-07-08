@@ -27,23 +27,6 @@ class Workflow extends Model
         })->latest();
     }
 
-    public function updateGithubData()
-    {
-        if (app()->environment('testing')) {
-            return $this;
-        }
-
-        $opts = ['http' => ['method' => 'GET','header' => ['User-Agent: PHP']]];
-
-        $context = stream_context_create($opts);
-        $results = json_decode(file_get_contents("https://api.github.com/repos/$this->repository", false, $context), true);
-
-        return $this->update([
-            'stars' => Arr::get($results, 'stargazers_count', 0),
-            'issues' => Arr::get($results, 'open_issues', 0),
-        ]);
-    }
-
     public function storeImport()
     {
         $properties = Arr::only($this->toArray(), ['title', 'outcome', 'options']);
