@@ -33,13 +33,12 @@ class CreateRepository implements ShouldQueue
     {
         $owner = config('services.github.owner');
         $token = config('services.github.token');
-        $repository = $this->fields['repository'];
 
         app(Client::class)->request('POST', "https://api.github.com/orgs/$owner/repos?access_token=$token", [
             'json' => [
-                'name' => $this->fields['repository'],
-                'description' => 'Laravel Nova: ' . str_replace('-', ' ', ucwords($repository)),
-                'homepage' => "https://novaworkflows.com/workflows/$repository",
+                'name' => $this->repository,
+                'description' => 'Laravel Nova: ' . str_replace('-', ' ', ucwords($this->repository)),
+                'homepage' => "https://novaworkflows.com/workflows/{$this->repository}",
                 'private' => false,
                 'has_projects' => false,
                 'has_wiki' => false,
