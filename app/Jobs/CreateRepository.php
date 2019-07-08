@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use GuzzleHttp\Client;
+use App\Jobs\FillRepository;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -34,7 +35,7 @@ class CreateRepository implements ShouldQueue
         $owner = config('services.github.owner');
         $token = config('services.github.token');
 
-        app(Client::class)->request('POST', "https://api.github.com/orgs/$owner/repos?access_token=$token", [
+        $response = app(Client::class)->request('POST', "https://api.github.com/orgs/$owner/repos?access_token=$token", [
             'json' => [
                 'name' => $this->repository,
                 'description' => 'Laravel Nova: ' . str_replace('-', ' ', ucwords($this->repository)),
@@ -44,5 +45,22 @@ class CreateRepository implements ShouldQueue
                 'has_wiki' => false,
             ]
         ]);
+
+        if (200 == $response->getStatusCode()) {
+            dispatch(new FillRepository(
+                $this->repository,
+                resource_path('stubs/outcome'),
+                $this->values()
+            ));
+        }
+    }
+
+    protected function values()
+    {
+        return [
+            'name' => ucwords($this->values['title']),
+            'repository' => $this->repository,
+            'link' => 'https://novaworkflows.com/workflows/' . $this->repository,
+        ];
     }
 }
