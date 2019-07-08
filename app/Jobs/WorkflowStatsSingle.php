@@ -43,11 +43,17 @@ class WorkflowStatsSingle implements ShouldQueue
 
     protected function githubRequest($repository)
     {
-        $response = app(Client::class)->request('GET', "https://api.github.com/repos/$repository", [
+        $owner = config('services.github.owner');
+
+        $response = app(Client::class)->request('GET', "https://api.github.com/repos/$owner/$repository", [
             'stream_context' =>  ['http' => ['method' => 'GET','header' => ['User-Agent: PHP']]],
             'stream' => true,
         ]);
 
-        return json_decode($response->getBody(), true);
+        optional($response, function ($response) {
+            json_decode($response->getBody(), true);
+        });
+
+        return [];
     }
 }
