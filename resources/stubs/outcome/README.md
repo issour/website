@@ -19,13 +19,13 @@ To install directly from github before we add to packagist:
 Add the following to your nova project's composer.json
 ```js
 "require": {
-    "nova-workflows/{{repository}}": "*"
+    "{{owner}}/{{repository}}": "*"
 },
 
 "repositories": {
     {
         "type": "vcs",
-        "url": "git@github.com:nova-workflows/{{repository}}.git"
+        "url": "git@github.com:{{owner}}/{{repository}}.git"
     }
 }
 ```

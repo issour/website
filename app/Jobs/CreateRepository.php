@@ -60,6 +60,7 @@ class CreateRepository implements ShouldQueue
         return [
             'name' => ucwords($this->values['title']),
             'repository' => $this->repository,
+            'owner' => config('services.github.owner'),
             'link' => 'https://novaworkflows.com/workflows/' . $this->repository,
         ];
     }
