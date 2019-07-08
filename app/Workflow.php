@@ -15,6 +15,7 @@ class Workflow extends Model
 
     public $casts = [
         'options' => 'array',
+        'drafted_at' => 'datetime',
         'published_at' => 'datetime',
     ];
 
