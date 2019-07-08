@@ -22,11 +22,12 @@ class Approve extends Action
 
     public function handle(ActionFields $fields, Collection $proposals)
     {
+        $fields = $fields->toArray();
         $proposal = $proposals->first();
 
         $proposal->update(['approved_at' => now()]);
 
-        dispatch(new CreateRepository($proposal, $fields->toArray()));
+        dispatch(new CreateRepository($fields['repository'], array_merge($proposal->toArray(), $fields)));
     }
 
     /**
