@@ -14,8 +14,9 @@ $factory->define(Workflow::class, function (Faker $faker) {
         'blurb' => $faker->text,
         'description_markdown' => $faker->text,
         'installation_markdown' => $faker->text,
-        'repository' => "https://github.com/{$faker->username}/{$faker->domainWord}",
-        'published_at' => now()->addDays(rand(0, 50)),
+        'repository' => $faker->domainWord,
+        'published_at' => null,
+        'drafted_at' => now(),
         'outcome' => 'PackageName\\Outcomes\\' . ucwords($faker->word),
         'options' => [
             'to' => '{user.email}',
