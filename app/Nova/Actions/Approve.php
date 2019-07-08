@@ -25,7 +25,7 @@ class Approve extends Action
         $fields = $fields->toArray();
         $proposal = $proposals->first();
 
-        abort_if(!is_null($proposal->approved_at), 'Proposal already approved');
+        abort_if(!is_null($proposal->approved_at), 500, 'Proposal already approved');
 
         $proposal->update(['approved_at' => now()]);
 
