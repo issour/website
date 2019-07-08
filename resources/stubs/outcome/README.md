@@ -1,5 +1,31 @@
 # {{name}}
 
-Here is the future home of the {{name}} integration
+Here is the repository of the [Laravel Nova {{name}} integration]({{link}})
 
-Upvote Here: {{link}}
+### ⚠ Staging: This has not launched yet.
+
+This is a proposed integration & basic foundation code.
+
+Feel free to PR some contributions to expedite the process.
+
+You can upvote to prioritize it & subscribe for notification:
+
+{{link}}
+
+### Pre-launch install:
+
+To install directly from github before we add to packagist:
+
+Add the following to your nova project's composer.json
+```js
+"require": {
+    "nova-workflows/{{repository}}": "*"
+},
+
+"repositories": {
+    {
+        "type": "vcs",
+        "url": "git@github.com:nova-workflows/{{repository}}.git"
+    }
+}
+```
