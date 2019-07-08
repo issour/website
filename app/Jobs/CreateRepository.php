@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Proposal;
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -14,15 +13,15 @@ class CreateRepository implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $proposal;
+    public $repository;
 
-    public $fields;
+    public $values;
 
-    public function __construct(Proposal $proposal, array $fields)
+    public function __construct($repository, $values)
     {
-        $this->proposal = $proposal;
+        $this->repository = $repository;
 
-        $this->fields = $fields;
+        $this->values = $values;
     }
 
     /**
