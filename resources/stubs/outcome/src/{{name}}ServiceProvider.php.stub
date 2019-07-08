@@ -1,0 +1,19 @@
+<?php
+
+namespace NovaWorkflows\Outcomes\{{name}};
+
+use NovaWorkflows\NovaWorkflows;
+use Illuminate\Support\ServiceProvider;
+
+class {{name}}ServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        NovaWorkflows::addOutcome({{name}}::class, '{{name}}');
+    }
+
+    public function register()
+    {
+        //
+    }
+}

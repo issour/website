@@ -1,0 +1,13 @@
+<?php
+
+namespace NovaWorkflows\Outcomes\{{name}};
+
+use NovaWorkflows\Outcomes\Outcome;
+
+class {{name}} extends Outcome
+{
+    public function handle()
+    {
+        // $this->options
+    }
+}
