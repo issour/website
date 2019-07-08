@@ -3,9 +3,9 @@
 namespace App\Nova\Actions;
 
 use App\App;
-use App\Jobs\ApproveProposal;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Fields\Text;
+use App\Jobs\CreateRepository;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Actions\Action;
 use Illuminate\Support\Collection;
