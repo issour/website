@@ -13,6 +13,8 @@ class Workflow extends Model
 
     public $with = ['app'];
 
+    public $appends = ['status'];
+
     public $casts = [
         'options' => 'array',
         'drafted_at' => 'datetime',
@@ -26,6 +28,11 @@ class Workflow extends Model
                 $query->where('title', 'LIKE', "%$term%");
             })->orWhere('title', 'LIKE', "%$term%");
         })->latest();
+    }
+
+    public function getStatusAttribute()
+    {
+        return is_null($this->published_at) ? 'draft' : 'published';
     }
 
     public function storeImport()
