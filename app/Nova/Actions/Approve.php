@@ -45,7 +45,7 @@ class Approve extends Action
                 ->rules('required'),
 
             Text::make('Repository')
-                ->rules('required', 'alpha_dash')
+                ->rules('required', 'alpha_dash', 'unique:workflows,repository')
                 ->help('ie gmail-outcome'),
         ];
     }
