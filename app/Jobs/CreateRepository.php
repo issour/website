@@ -15,14 +15,14 @@ class CreateRepository implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $repository;
+    public $owner;
+    public $token;
 
-    public $values;
-
-    public function __construct($repository, $values)
+    public function __construct($repository)
     {
         $this->repository = $repository;
-
-        $this->values = $values;
+        $this->owner = config('services.github.owner');
+        $this->token = config('services.github.token');
     }
 
     /**
@@ -32,36 +32,20 @@ class CreateRepository implements ShouldQueue
      */
     public function handle()
     {
-        $owner = config('services.github.owner');
-        $token = config('services.github.token');
-
-        $response = app(Client::class)->request('POST', "https://api.github.com/orgs/$owner/repos?access_token=$token", [
+        app(Client::class)->request('POST', $this->endpoint(), [
             'json' => [
                 'name' => $this->repository,
-                'description' => 'Laravel Nova: ' . str_replace('-', ' ', ucwords($this->repository)),
+                'description' => str_replace('-', ' ', ucwords($this->repository)) . ' with Laravel',
                 'homepage' => "https://novaworkflows.com/workflows/{$this->repository}",
                 'private' => false,
                 'has_projects' => false,
                 'has_wiki' => false,
             ]
         ]);
-
-        if (201 == $response->getStatusCode()) {
-            dispatch(new FillRepository(
-                $this->repository,
-                resource_path('stubs/outcome'),
-                $this->values()
-            ));
-        }
     }
 
-    protected function values()
+    protected function endpoint()
     {
-        return [
-            'name' => ucwords($this->values['title']),
-            'repository' => $this->repository,
-            'owner' => config('services.github.owner'),
-            'link' => 'https://novaworkflows.com/workflows/' . $this->repository,
-        ];
+        return "https://api.github.com/orgs/{$this->owner}/repos?access_token={$this->token}";
     }
 }

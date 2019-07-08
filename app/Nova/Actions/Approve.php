@@ -3,6 +3,7 @@
 namespace App\Nova\Actions;
 
 use App\App;
+use App\Jobs\ConvertProposal;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Fields\Text;
 use App\Jobs\CreateRepository;
@@ -23,13 +24,19 @@ class Approve extends Action
     public function handle(ActionFields $fields, Collection $proposals)
     {
         $fields = $fields->toArray();
+
         $proposal = $proposals->first();
 
         abort_if(!is_null($proposal->approved_at), 500, 'Proposal already approved');
 
-        $proposal->update(['approved_at' => now()]);
+        $proposal->update([
+            'app_id' => $fields['app_id'],
+            'repository' => $fields['repository'],
+            'stub' => 'stubs/outcome',
+            'approved_at' => now(),
+        ]);
 
-        dispatch(new CreateRepository($fields['repository'], array_merge($proposal->toArray(), $fields)));
+        dispatch(new ApproveProposal($proposal->fresh()));
     }
 
     /**

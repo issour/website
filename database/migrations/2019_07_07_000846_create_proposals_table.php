@@ -18,6 +18,9 @@ class CreateProposalsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('url');
+            $table->string('stub')->nullable();
+            $table->string('repository')->nullable();
+            $table->integer('app_id')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->timestamp('rejected_at')->nullable();
             $table->timestamps();

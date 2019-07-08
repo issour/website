@@ -17,25 +17,24 @@ class FillRepository implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $folder;
-    public $variables;
-    public $repository;
+    public $source;
+    public $values;
     public $owner;
     public $token;
+    public $repository;
 
-    public function __construct($repository, $folder, $variables = [])
+    public function __construct($repository, $source, $values = [])
     {
-        $this->folder = $folder;
-        $this->variables = $variables;
+        $this->source = $source;
+        $this->values = $values;
         $this->repository = $repository;
-
         $this->owner = config('services.github.owner');
         $this->token = config('services.github.token');
     }
 
     public function handle()
     {
-        Stub::source($this->folder)->output(function ($path, $content) {
+        Stub::source($this->source)->output(function ($path, $content) {
             app(Client::class)->request('PUT', $this->endpoint($path), [
                 'json' => [
                     'committer' => config('services.github.author'),
@@ -43,11 +42,21 @@ class FillRepository implements ShouldQueue
                     'content' => base64_encode($content),
                 ]
             ]);
-        })->parse($this->variables);
+        })->parse($this->variables());
     }
 
     protected function endpoint($path)
     {
         return "https://api.github.com/repos/{$this->owner}/{$this->repository}/contents/$path?access_token={$this->token}";
+    }
+
+    protected function variables()
+    {
+        return [
+            'name' => ucwords($this->values['title']),
+            'repository' => $this->repository,
+            'owner' => config('services.github.owner'),
+            'link' => 'https://novaworkflows.com/workflows/' . $this->repository,
+        ];
     }
 }
