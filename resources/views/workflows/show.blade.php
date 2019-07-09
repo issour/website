@@ -47,6 +47,8 @@
 
                 <div class="markdown-body bg-white p-12 rounded">{!! $workflow->installation !!}</div>
             </div>
+
+            @if($workflow->options)
             <div id="options" class="mb-6">
                 <h3 class="text-3xl mb-3">Options</h3>
                 <div class="mb-4 relative rounded-t-lg rounded-b-lg shadow overflow-hidden" style="background-clip: border-box;">
@@ -79,7 +81,9 @@
                     php artisan workflow:import {{ $workflow->id }}
                 </blockquote>
             </div>
+            @endif
 
+            @if($workflow->youtube)
             <div id="video" class="mb-6">
                 <h3 class="text-3xl mb-3">Video walkthrough</h3>
                 <div class="bg-white p-4 rounded">
@@ -89,7 +93,9 @@
                     <p class="mb-6">This video will walk you through setup & basic usage of this integration</p>
                 </div>
             </div>
+            @endif
 
+            @if(count($recipes))
             <div id="recipies" class="mb-6 bg-white p-10">
                 <h3 class="text-3xl">Recipes</h3>
                 <h4 class="mb-3">Ideas on using the '{{ $workflow->title }}' workflow</h4>
@@ -104,6 +110,7 @@
                     </div>
                 @endforeach
             </div>
+            @endif
         </div>
         <div class="w-1/5">
             <div class="fixed px-6">
