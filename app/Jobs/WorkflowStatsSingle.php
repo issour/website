@@ -50,9 +50,9 @@ class WorkflowStatsSingle implements ShouldQueue
             'stream' => true,
         ]);
 
-        optional($response, function ($response) {
-            json_decode($response->getBody(), true);
-        });
+        if ($response) {
+            return json_decode($response->getBody(), true);
+        }
 
         return [];
     }
