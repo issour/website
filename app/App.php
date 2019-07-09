@@ -14,4 +14,9 @@ class App extends Model
     {
         return $this->hasMany(Workflow::class);
     }
+
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class);
+    }
 }
