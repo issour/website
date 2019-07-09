@@ -43,32 +43,30 @@
     <div class="container mx-auto">
         <div class="flex flex-wrap -mx-4">
             @foreach($workflows as $workflow)
-                <div class="w-1/3 p-4">
-                    <div class="border rounded p-4 bg-white">
+                <div class="w-1/3 px-4 pb-4 mb-6">
+                    <div class="bg-white shadow-lg">
                         @if($workflow->image)
+                            <div class="relative h-64">
                             <a href="{{ route('workflows.show', $workflow->slug) }}">
-                                <img src="{{ $workflow->image }}" alt="{{ $workflow->title }}" class="mb-2">
+                                    <img src="{{ $workflow->image }}" alt="{{ $workflow->title }}" class="absolute inset-0 h-full w-full object-cover">
                             </a>
+                            </div>
                         @endif
-                            <div class="flex justify-center items-center">
-                                <div class="w-3/4">
+                            <div class="p-6">
+                                <div class="w-full">
                                     <a href="{{ route('workflows.show', $workflow->slug) }}">
                                         <span>{{ $workflow->app->title }}</span>
                                         <h3 class="text-2xl">{{ $workflow->title }}</h3>
                                     </a>
-                                    <p>{{ $workflow->blurb }}</p>
+                                    <p class="truncate nowrap">{{ $workflow->blurb }}</p>
                                 </div>
-                                <div class="w-1/4">
-                                    <a href="https://github.com/{{ $workflow->repository }}" target="_blank" class="inline-block border border-gray-400 hover:border-gray-600 rounded-lg overflow-hidden">
-                                        <span class="flex text-gray-900">
+                                <div class="w-full pt-4">
                                             <span class="bg-gray-200 py-1 px-3 font-bold align-middle">
-                                                Stars
+                                        {{ ($workflow->status == 'published') ? 'Stars' : 'Votes' }}
                                             </span>
                                             <span class="bg-white py-1 px-3 border-l">
                                                 {{ $workflow->stars }}
                                             </span>
-                                        </span>
-                                    </a>
                                 </div>
                             </div>
                         </a>
