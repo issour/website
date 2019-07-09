@@ -33,12 +33,14 @@ class ApproveProposal implements ShouldQueue
      */
     public function handle()
     {
+        $repository = $this->proposal->repository;
+
         $this->chain([
-            new CreateRepository($this->proposal->repository),
+            new CreateRepository($repository),
             new ConvertProposal($this->proposal),
             new TagRepository($repository, $this->topics()),
             new FillRepository(
-                $this->proposal->repository,
+                $repository,
                 resource_path($this->proposal->stub),
                 $this->proposal->toArray()
             ),

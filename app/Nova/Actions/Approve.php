@@ -3,6 +3,7 @@
 namespace App\Nova\Actions;
 
 use App\App;
+use App\Jobs\ApproveProposal;
 use App\Jobs\ConvertProposal;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Fields\Text;
@@ -47,7 +48,7 @@ class Approve extends Action
     public function fields()
     {
         return [
-            Select::make('App')
+            Select::make('App', 'app_id')
                 ->options(App::all()->pluck('title', 'id'))
                 ->rules('required'),
 
