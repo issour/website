@@ -25,11 +25,11 @@
                 <a href="#" class="block w-1/2 border-r py-3">
                     All
                 </a>
-                <a href="#" class="block w-1/2 border-r py-3 bg-gray-400">
+                <a href="/workflows" class="block w-1/2 border-r py-3 @if(request()->is('workflows'))) bg-gray-400 @endif">
                     Live
                 </a>
-                <a href="#" class="block w-1/2 py-3">
-                    Staged
+                <a href="/staging" class="block w-1/2 py-3 @if(request()->is('staging'))) bg-gray-400 @endif">
+                    Staging
                 </a>
             </div>
         </div>
