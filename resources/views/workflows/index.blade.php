@@ -14,6 +14,14 @@
                     <input type="search" placeholder="Search workflows" name="search" value="{{ request('search') }}" class="block w-full border border-transparent bg-white focus:outline-none  focus:border-gray-300 text-gray-900 rounded-lg pl-10 pr-4 py-2">
                 </form>
             </div>
+
+            <div class="flex w-2/5 px-8 py-2 justify-center">
+                <a href="" class="pr-8">General</a>
+                <a href="" class="pr-8">Social</a>
+                <a href="" class="pr-8">Accounting</a>
+                <a href="" class="pr-8">Contact / CRM</a>
+            </div>
+
             <div class="w-1/5">
                 <div class="rounded-full bg-gray-300 border overflow-hidden flex text-center">
                     <a href="#" class="block w-1/2 border-r py-3 bg-gray-400">
