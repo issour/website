@@ -17,7 +17,7 @@ $factory->define(Workflow::class, function (Faker $faker) {
         'repository' => $faker->domainWord,
         'youtube' => 'https://www.youtube.com/watch?v=-iVy-lAr2xY',
         'published_at' => null,
-        'drafted_at' => now(),
+        'drafted_at' => null,
         'outcome' => 'PackageName\\Outcomes\\' . ucwords($faker->word),
         'options' => [
             'to' => '{user.email}',
@@ -30,3 +30,13 @@ $factory->define(Workflow::class, function (Faker $faker) {
         'app_id' => factory(App::class),
     ];
 });
+
+
+$factory->state(Workflow::class, 'live', [
+    'published_at' => now()->subDays(rand(1, 20)),
+    'drafted_at' => now()->subDays(rand(20, 30)),
+]);
+
+$factory->state(Workflow::class, 'staging', [
+    'drafted_at' => now()->subDays(rand(20, 30)),
+]);

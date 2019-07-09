@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         Recipe::truncate();
         App::truncate();
 
-        factory(Workflow::class, 100)->create();
+        factory(Workflow::class, 100)->state('live')->create();
         factory(Proposal::class, 100)->create();
         factory(Recipe::class, 100)->create();
     }

@@ -12,7 +12,7 @@ class WorkflowsTest extends TestCase
 
     public function testViewingRecentWorkflows()
     {
-        factory(Workflow::class, 30)->create();
+        factory(Workflow::class, 30)->state('live')->create();
 
         $response = $this->get('/workflows');
 
@@ -22,7 +22,7 @@ class WorkflowsTest extends TestCase
 
     public function testViewingSingleWorkflow()
     {
-        $workflow = factory(Workflow::class)->create();
+        $workflow = factory(Workflow::class)->state('live')->create();
 
         $response = $this->get('/workflows/' . $workflow->slug);
 

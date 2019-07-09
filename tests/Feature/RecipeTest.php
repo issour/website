@@ -12,7 +12,7 @@ class RecipeTest extends TestCase
 {
     public function testViewingRecipesOnWorkflow()
     {
-        $workflow = factory(Workflow::class)->create();
+        $workflow = factory(Workflow::class)->state('live')->create();
 
         $recipes = factory(Recipe::class, 5)->create(['workflow_id' => $workflow->id]);
 
@@ -30,7 +30,7 @@ class RecipeTest extends TestCase
 
     public function testViewingSingleRecipe()
     {
-        $workflow = factory(Workflow::class)->create();
+        $workflow = factory(Workflow::class)->state('live')->create();
 
         $recipes = factory(Recipe::class, 5)->create(['workflow_id' => $workflow->id]);
 

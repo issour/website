@@ -15,7 +15,7 @@ class AppTest extends TestCase
      */
     public function testCanSearchAppOnWorkflows()
     {
-        $workflows = factory(Workflow::class, 2)->create();
+        $workflows = factory(Workflow::class, 2)->state('live')->create();
 
         $response = $this->get('/workflows?search='.$workflows->first()->app->title);
 
