@@ -10,7 +10,7 @@ class WorkflowsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testViewingRecentWorflows()
+    public function testViewingRecentWorkflows()
     {
         factory(Workflow::class, 30)->create();
 
@@ -20,7 +20,7 @@ class WorkflowsTest extends TestCase
         $response->assertSee(Workflow::latest()->first()->title);
     }
 
-    public function testViewingSingleWorflow()
+    public function testViewingSingleWorkflow()
     {
         $workflow = factory(Workflow::class)->create();
 
@@ -31,7 +31,7 @@ class WorkflowsTest extends TestCase
         $response->assertSee($workflow->description);
     }
 
-    public function testSearchingWorflow()
+    public function testSearchingWorkflow()
     {
         $workflow = factory(Workflow::class)->create();
 
