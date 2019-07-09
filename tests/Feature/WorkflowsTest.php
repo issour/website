@@ -10,6 +10,14 @@ class WorkflowsTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function testLiveScope()
+    {
+        factory(Workflow::class, 2)->state('live')->create();
+        factory(Workflow::class, 2)->state('staging')->create();
+
+        $this->assertEquals(2, Workflow::count());
+    }
+
     public function testViewingRecentWorkflows()
     {
         factory(Workflow::class, 30)->state('live')->create();

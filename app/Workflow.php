@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\HasSlug;
+use App\Scopes\Published;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -21,6 +22,13 @@ class Workflow extends Model
         'published_at' => 'datetime',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new Published);
+    }
+
     public function scopeFiltered($query)
     {
         $query->when(request('search'), function ($query, $term) {
@@ -28,6 +36,14 @@ class Workflow extends Model
                 $query->where('title', 'LIKE', "%$term%");
             })->orWhere('title', 'LIKE', "%$term%");
         })->latest();
+    }
+
+    public function scopeStaging($query)
+    {
+        $query
+            ->withoutGlobalScope(Published::class)
+            ->whereNull('published_at')
+            ->whereNotNull('drafted_at');
     }
 
     public function getStatusAttribute()
