@@ -1,5 +1,9 @@
 <?php
 
+use App\App;
+use App\Recipe;
+use App\Proposal;
+use App\Workflow;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        app()['env'] = 'seeding';
+
+        Workflow::truncate();
+        Proposal::truncate();
+        Recipe::truncate();
+        App::truncate();
+
+        factory(Workflow::class, 100)->create();
+        factory(Proposal::class, 100)->create();
+        factory(Recipe::class, 100)->create();
     }
 }
