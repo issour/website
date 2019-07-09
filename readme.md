@@ -26,6 +26,12 @@ GITHUB_OWNER=<username-or-org>
 GITHUB_TOKEN=<personal-token>
 ```
 
+Replace config settings
+
+```
+services.github.author
+```
+
 TODO: seeders
 
 ```
