@@ -25,4 +25,9 @@ class Proposal extends Model
 
         return 'requested';
     }
+
+    public function app()
+    {
+        return $this->belongsTo(App::class);
+    }
 }
