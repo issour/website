@@ -103,7 +103,7 @@ class ProposalTest extends TestCase
 
         dispatch(new ApproveProposal($proposal));
 
-        $this->assertEquals(1, Workflow::count());
-        $this->assertEquals('draft', Workflow::first()->status);
+        $this->assertEquals(1, Workflow::staging()->count());
+        $this->assertEquals('draft', Workflow::staging()->first()->status);
     }
 }
