@@ -11,10 +11,11 @@ $factory->define(Workflow::class, function (Faker $faker) {
     return [
         'title' => $faker->bs,
         'slug' => Str::slug($faker->bs),
-        'blurb' => $faker->text,
+        'blurb' => $faker->words(rand(5, 10), true),
         'description_markdown' => $faker->text,
         'installation_markdown' => $faker->text,
         'repository' => $faker->domainWord,
+        'youtube' => 'https://www.youtube.com/watch?v=-iVy-lAr2xY',
         'published_at' => null,
         'drafted_at' => now(),
         'outcome' => 'PackageName\\Outcomes\\' . ucwords($faker->word),
