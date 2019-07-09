@@ -96,7 +96,7 @@
             @endif
 
             @if(count($recipes))
-            <div id="recipies" class="mb-6 bg-white p-10">
+            <div id="recipes" class="mb-6 bg-white p-10">
                 <h3 class="text-3xl">Recipes</h3>
                 <h4 class="mb-3">Ideas on using the '{{ $workflow->title }}' workflow</h4>
 
@@ -116,9 +116,15 @@
             <div class="fixed px-6">
                 <a href="#top" class="block text-xl hover:text-gray-600 select-none">Overview</a>
                 <a href="#installation" class="block text-xl hover:text-gray-600 select-none">Installation</a>
+                @if($workflow->options)
                 <a href="#options" class="block text-xl hover:text-gray-600 select-none">Options</a>
+                @endif
+                @if($workflow->youtube)
                 <a href="#video" class="block text-xl hover:text-gray-600 select-none">Video</a>
-                <a href="#recipies" class="block text-xl hover:text-gray-600 select-none">Recipies</a>
+                @endif
+                @if(count($recipes))
+                <a href="#recipes" class="block text-xl hover:text-gray-600 select-none">Recipes</a>
+                @endif
             </div>
         </div>
     </div>
