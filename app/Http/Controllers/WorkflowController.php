@@ -10,7 +10,7 @@ class WorkflowController extends Controller
     public function index()
     {
         return view('workflows.index', [
-            'workflows' => Workflow::filtered()->paginate(20)
+            'workflows' => Workflow::filtered()->published()->paginate(20)
         ]);
     }
 

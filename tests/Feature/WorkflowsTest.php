@@ -15,7 +15,7 @@ class WorkflowsTest extends TestCase
         factory(Workflow::class, 2)->state('live')->create();
         factory(Workflow::class, 2)->state('staging')->create();
 
-        $this->assertEquals(2, Workflow::count());
+        $this->assertEquals(2, Workflow::published()->count());
     }
 
     public function testViewingRecentWorkflows()
