@@ -6,7 +6,7 @@ Here is the complete source code for NovaWorkflows.com
 git clone git@github.com:nova-workflows/website.git <some-folder>
 ```
 
-Install Nova (https://nova.laravel.com/docs/2.0/installation.html)[link]
+Install Nova
 
 ```
 composer update
