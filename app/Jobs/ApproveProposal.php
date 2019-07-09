@@ -45,7 +45,7 @@ class ApproveProposal implements ShouldQueue
             new FillRepository(
                 $repository,
                 resource_path($this->proposal->stub),
-                $this->proposal->toArray()
+                $this->proposal->load('app')->toArray()
             ),
         ]);
     }
