@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="h-screen" style="background: url(images/space.png) no-repeat top right; background-size: cover;">
+    <div class="h-screen">
         <div class="container mx-auto flex pt-6">
             <div class="w-3/5 mx-auto">
                 <div class="bg-white p-12 rounded-lg">
@@ -27,7 +27,9 @@
                             @error('description')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
-                            <button class="px-6 py-3 text-white bg-blue-600 mt-6">Send Request</button>
+                            <button type="submit" class="ml-auto mt-8 rounded-full uppercase border-b-4 border-blue-700 hover:bg-blue-400 font-bold leading-loose text-sm block mx-8 py-3 px-6 bg-blue-500 text-white text-center">
+                                <span>Send Request</span>
+                            </button>
                         </form>
                     @endif
                 </div>
