@@ -2,7 +2,6 @@
 
 namespace App\Jobs\Github;
 
-use App\model;
 use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
 use Illuminate\Bus\Queueable;
