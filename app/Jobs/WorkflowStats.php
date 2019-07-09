@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Workflow;
 use Illuminate\Bus\Queueable;
-use App\Jobs\Github\RepositoryToModel;
+use App\Jobs\Github\ModelRepository;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,7 +26,7 @@ class WorkflowStats implements ShouldQueue
         }
 
         Workflow::each(function ($workflow) {
-            dispatch(new RepositoryToModel($repository, $workflow, [
+            dispatch(new ModelRepository($workflow, $workflow->repository, [
                 'stars' => 'stargazers_count',
                 'issues' => 'open_issues',
             ]));

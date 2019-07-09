@@ -10,18 +10,18 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class RepositoryToModel implements ShouldQueue
+class ModelRepository implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $repository;
     public $model;
+    public $repository;
     public $bindings;
 
-    public function __construct($repository, $model, $bindings)
+    public function __construct($model, $repository, $bindings)
     {
-        $this->repository = $repository;
         $this->model = $model;
+        $this->repository = $repository;
         $this->bindings = $bindings;
     }
 
@@ -40,8 +40,8 @@ class RepositoryToModel implements ShouldQueue
 
         $results = $this->githubRequest($this->repository);
 
-        foreach ($this->bindings as $mKey => $ghKey) {
-            $values[$mKey] = Arr::get($results, $ghKey, 0);
+        foreach ($this->bindings as $property => $githubKey) {
+            $values[$property] = Arr::get($results, $githubKey, 0);
         }
 
         $this->model->update($values);
