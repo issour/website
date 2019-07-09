@@ -32,7 +32,7 @@ class RepositoryToModel implements ShouldQueue
      */
     public function handle()
     {
-        if (app()->environment('testing')) {
+        if (app()->environment(['testing', 'seeding'])) {
             return;
         }
 
