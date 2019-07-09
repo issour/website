@@ -18,7 +18,12 @@
                         <span>{{ $workflow->app->title }}</span>
                     </div>
                 </div>
-                <div>
+                <div class="flex items-center">
+                    @if($workflow->inStaging())
+                        <span class="inline-block bg-gray-900 mr-6 px-4 py-2 text-white" title="Not ready for production use">
+                            Staging
+                        </span>
+                    @endif
                     <a href="https://github.com/{{ $workflow->repository }}" target="_blank" class="inline-block border border-gray-400 hover:border-gray-600 rounded-lg overflow-hidden">
                         <span class="flex text-gray-900">
                             <span class="bg-gray-200 py-2 px-4 font-bold align-middle">
@@ -41,6 +46,12 @@
     <div class="container mx-auto flex">
         <div class="w-4/5">
             <img src="/{{ $workflow->banner }}" alt="" class="w-full mb-4">
+            @if($workflow->inStaging())
+                <div class="p-12 mb-6 bg-gray-900 text-white">
+                    <h3 class="text-3xl mb-3">Staging</h3>
+                    <p>This integration has not yet been launched</p>
+                </div>
+            @endif
             <div id="overview" class="mb-6">
                 <div class="markdown-body bg-white p-12 rounded">{!! $workflow->description !!}</div>
             </div>

@@ -37,6 +37,7 @@ class WorkflowsTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee($workflow->title);
         $response->assertSee($workflow->description);
+        $response->assertDontSee('Staging');
     }
 
     public function testSearchingWorkflow()

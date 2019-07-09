@@ -44,6 +44,11 @@ class Workflow extends Model
             ->whereNotNull('drafted_at');
     }
 
+    public function inStaging()
+    {
+        return $this->status != 'published';
+    }
+
     public function getStatusAttribute()
     {
         return is_null($this->published_at) ? 'draft' : 'published';
