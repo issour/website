@@ -29,3 +29,15 @@ Add the following to your nova project's composer.json
     }
 }
 ```
+
+Setup services config
+
+```
+
+    '{{name}}' => [
+    
+        //
+    
+    ],
+    
+```    
