@@ -10,7 +10,10 @@ Install Nova
 
 ```
 composer update
+cp .env.example .env
+php artisan key:generate
 ```
+> add local db connection
 ```
 php artisan migrate
 php artisan nova:user
@@ -24,7 +27,7 @@ GITHUB_OWNER=<username-or-org>
 GITHUB_TOKEN=<personal-token>
 ```
 
-Replace config settings
+> replace config settings
 
 ```
 services.github.author
