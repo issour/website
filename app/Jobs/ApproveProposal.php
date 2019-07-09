@@ -3,8 +3,11 @@
 namespace App\Jobs;
 
 use App\Workflow;
-use App\Jobs\TagRepository;
+use App\Jobs\ConvertProposal;
 use Illuminate\Bus\Queueable;
+use App\Jobs\Github\TagRepository;
+use App\Jobs\Github\FillRepository;
+use App\Jobs\Github\CreateRepository;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Github;
 
 use Stub\Stub;
 use GuzzleHttp\Client;

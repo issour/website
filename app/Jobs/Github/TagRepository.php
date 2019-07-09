@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Github;
 
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
