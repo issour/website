@@ -42,7 +42,7 @@
             <div id="installation" class="mb-6">
                 <h3 class="text-3xl mb-3">Installation</h3>
                 <blockquote class="bg-gray-800 text-white rounded-lg p-4">
-                    composer require {{ $workflow->repository }}
+                    composer require {{config('services.github.owner')}}/{{ $workflow->repository }}
                 </blockquote>
 
                 <div class="markdown-body bg-white p-12 rounded">{!! $workflow->installation !!}</div>
