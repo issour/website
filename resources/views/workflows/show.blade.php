@@ -7,8 +7,8 @@
 
 @section('content')
     <div>
-        <div class="flex container mx-auto py-10 justify-between text-gray-700 items-center">
-            <div class="flex w-4/5 justify-between  items-baseline">
+        <div class="flex container mx-auto pt-8 justify-between text-gray-700 items-top">
+            <div class="flex w-4/5 justify-between">
                 <div class="flex">
                     <div class="mr-4">
                         <img src="/{{ $workflow->app->image }}" alt="Laravel {{ $workflow->app->title }} Integration" class="w-16 p-2 rounded  bg-white">
@@ -31,6 +31,11 @@
                     </a>
                 </div>
             </div>
+            <div class="w-1/5">
+                <a href="/new" class="rounded-full uppercase border-b-4 border-blue-700 hover:bg-blue-400 font-bold leading-loose text-sm block mx-8 py-3 bg-blue-500 text-white text-center">
+                    <span>Request App</span>
+                </a>
+            </div>
         </div>
     </div>
     <div class="container mx-auto flex">
@@ -39,17 +44,17 @@
             <div id="overview" class="mb-6">
                 <div class="markdown-body bg-white p-12 rounded">{!! $workflow->description !!}</div>
             </div>
-            <div id="installation" class="mb-6">
+            <div id="installation" class="mb-6 bg-white p-12 rounded">
                 <h3 class="text-3xl mb-3">Installation</h3>
                 <blockquote class="bg-gray-800 text-white rounded-lg p-4">
                     composer require {{config('services.github.owner')}}/{{ $workflow->repository }}
                 </blockquote>
 
-                <div class="markdown-body bg-white p-12 rounded">{!! $workflow->installation !!}</div>
+                <div class="markdown-body pt-12">{!! $workflow->installation !!}</div>
             </div>
 
             @if($workflow->options)
-            <div id="options" class="mb-6">
+            <div id="options" class="mb-6 bg-white p-12 rounded">
                 <h3 class="text-3xl mb-3">Options</h3>
                 <div class="mb-4 relative rounded-t-lg rounded-b-lg shadow overflow-hidden" style="background-clip: border-box;">
                     <div class="flex border-b">
