@@ -78,7 +78,7 @@
                 <p>Running the following command will create a workflow with all the available options</p>
                 <p class="mb-6">This saves time by not having to reference and type each option.</p>
                 <blockquote class="bg-gray-800 text-white rounded-lg p-4">
-                    php artisan workflow:import {{ $workflow->id }}
+                    php artisan nova:workflow {{ $workflow->id }}
                 </blockquote>
             </div>
             @endif
