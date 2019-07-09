@@ -10,6 +10,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RecipeTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testViewingRecipesOnWorkflow()
     {
         $workflow = factory(Workflow::class)->state('live')->create();

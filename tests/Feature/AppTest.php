@@ -8,11 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AppTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+    use RefreshDatabase;
+
     public function testCanSearchAppOnWorkflows()
     {
         $workflows = factory(Workflow::class, 2)->state('live')->create();
