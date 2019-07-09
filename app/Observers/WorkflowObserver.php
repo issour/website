@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use Illuminate\Mail\Markdown;
-use App\Jobs\Github\RepositoryToModel;
+use App\Jobs\Github\ModelRepository;
 
 class WorkflowObserver
 {
@@ -11,7 +11,7 @@ class WorkflowObserver
     {
         $workflow->storeImport();
 
-        dispatch(new RepositoryToModel($workflow->repository, $workflow, [
+        dispatch(new ModelRepository($workflow, $workflow->repository, [
             'stars' => 'stargazers_count',
             'issues' => 'open_issues',
         ]));
