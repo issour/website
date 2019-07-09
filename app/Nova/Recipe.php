@@ -46,7 +46,7 @@ class Recipe extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Title')->rules('required'),
-            Text::make('Slug')->help('Leave blank to slug title'),
+            Text::make('Slug')->help('Leave blank to slug title')->hideFromIndex(),
             Markdown::make('Content', 'markdown')->rules('required'),
             BelongsTo::make('Workflow')->searchable()->rules('required'),
         ];

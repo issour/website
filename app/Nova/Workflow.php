@@ -59,7 +59,7 @@ class Workflow extends Resource
                 ->creationRules('unique:workflows,slug,{{resourceId}}')
                 ->updateRules('unique:workflows,slug,{{resourceId}}')
                 ->hideFromIndex(),
-            Text::make('Blurb')->rules('required'),
+            Text::make('Blurb')->rules('required')->hideFromIndex(),
             Markdown::make('Description', 'description_markdown')->rules('required'),
             Markdown::make('Installation', 'installation_markdown')->rules('required'),
             Text::make('Repository')->displayUsing(function () {

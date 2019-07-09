@@ -50,12 +50,13 @@ class Proposal extends Resource
             ID::make()->sortable(),
             Text::make('Title')->rules('required'),
             Textarea::make('Description')->rules('required'),
-            Text::make('Url')->rules('required'),
+            Text::make('Url')->rules('required')->hideFromIndex(),
             Badge::make('Status')->types([
                 'requested' => 'bg-20',
                 'rejected' => 'bg-danger',
                 'approved' => 'bg-success',
             ]),
+            DateTime::make('Created At'),
             DateTime::make('Approved At')->onlyOnDetail(),
             DateTime::make('Rejected At')->onlyOnDetail(),
         ];
