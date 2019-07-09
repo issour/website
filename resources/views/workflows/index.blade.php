@@ -47,9 +47,9 @@
                     <div class="bg-white shadow-lg">
                         @if($workflow->image)
                             <div class="relative h-64">
-                            <a href="{{ route('workflows.show', $workflow->slug) }}">
+                                <a href="{{ route('workflows.show', $workflow->slug) }}">
                                     <img src="{{ $workflow->image }}" alt="{{ $workflow->title }}" class="absolute inset-0 h-full w-full object-cover">
-                            </a>
+                                </a>
                             </div>
                         @endif
                             <div class="p-6">
@@ -61,12 +61,12 @@
                                     <p class="truncate nowrap">{{ $workflow->blurb }}</p>
                                 </div>
                                 <div class="w-full pt-4">
-                                            <span class="bg-gray-200 py-1 px-3 font-bold align-middle">
+                                    <span class="bg-gray-200 py-1 px-3 font-bold align-middle">
                                         {{ ($workflow->status == 'published') ? 'Stars' : 'Votes' }}
-                                            </span>
-                                            <span class="bg-white py-1 px-3 border-l">
-                                                {{ $workflow->stars }}
-                                            </span>
+                                    </span>
+                                    <span class="bg-white py-1 px-3 border-l">
+                                        {{ $workflow->stars }}
+                                    </span>
                                 </div>
                             </div>
                         </a>

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         @stack('head')
     </head>
-    <body id="top" class="min-h-screen bg-gray-100 antialiased">
+    <body id="top" class="min-h-screen bg-gray-200 antialiased">
         <header class="h-20 bg-white sm:flex sm:items-center sm:justify-between xl:flex-shrink-0 px-16">
             <div class="flex justify-between px-4 py-3 xl:w-72 font-bold">
                 <a href="/" class="flex items-center">
