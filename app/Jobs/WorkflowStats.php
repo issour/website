@@ -3,15 +3,14 @@
 namespace App\Jobs;
 
 use App\Workflow;
-use Illuminate\Support\Arr;
 use Illuminate\Bus\Queueable;
-use App\Jobs\WorkflowStatsSingle;
+use App\Jobs\Github\RepositoryToModel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class WorkflowStatsAll implements ShouldQueue
+class WorkflowStats implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -27,7 +26,10 @@ class WorkflowStatsAll implements ShouldQueue
         }
 
         Workflow::each(function ($workflow) {
-            dispatch(new WorkflowStatsSingle($workflow));
+            dispatch(new RepositoryToModel($repository, $workflow, [
+                'stars' => 'stargazers_count',
+                'issues' => 'open_issues',
+            ]));
         });
     }
 }

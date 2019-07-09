@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Github;
 
-use App\Workflow;
+use App\model;
 use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
 use Illuminate\Bus\Queueable;
@@ -11,15 +11,19 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class WorkflowStatsSingle implements ShouldQueue
+class RepositoryToModel implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $workflow;
+    public $repository;
+    public $model;
+    public $bindings;
 
-    public function __construct($workflow)
+    public function __construct($repository, $model, $bindings)
     {
-        $this->workflow = $workflow;
+        $this->repository = $repository;
+        $this->model = $model;
+        $this->bindings = $bindings;
     }
 
     /**
@@ -33,12 +37,15 @@ class WorkflowStatsSingle implements ShouldQueue
             return;
         }
 
-        $results = $this->githubRequest($this->workflow->repository);
+        $values = [];
 
-        $this->workflow->update([
-            'stars' => Arr::get($results, 'stargazers_count', 0),
-            'issues' => Arr::get($results, 'open_issues', 0),
-        ]);
+        $results = $this->githubRequest($this->repository);
+
+        foreach ($this->bindings as $mKey => $ghKey) {
+            $values[$mKey] = Arr::get($results, $ghKey, 0);
+        }
+
+        $this->model->update($values);
     }
 
     protected function githubRequest($repository)

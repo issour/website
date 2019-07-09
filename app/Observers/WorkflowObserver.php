@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use Illuminate\Mail\Markdown;
-use App\Jobs\WorkflowStatsSingle;
+use App\Jobs\Github\RepositoryToModel;
 
 class WorkflowObserver
 {
@@ -11,7 +11,10 @@ class WorkflowObserver
     {
         $workflow->storeImport();
 
-        dispatch(new WorkflowStatsSingle($workflow));
+        dispatch(new RepositoryToModel($workflow->repository, $workflow, [
+            'stars' => 'stargazers_count',
+            'issues' => 'open_issues',
+        ]));
     }
 
     public function saving($workflow)
