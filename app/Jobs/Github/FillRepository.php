@@ -5,6 +5,7 @@ namespace App\Jobs\Github;
 use Stub\Stub;
 use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
@@ -53,7 +54,9 @@ class FillRepository implements ShouldQueue
     protected function variables()
     {
         return [
-            'name' => ucwords($this->values['title']),
+            'app' => Arr::get($this->values, 'app.title'),
+            'class' => Str::studly($this->values['title']),
+            'name' => Str::title($this->values['title']),
             'repository' => $this->repository,
             'owner' => config('services.github.owner'),
             'link' => 'https://novaworkflows.com/workflows/' . $this->repository,

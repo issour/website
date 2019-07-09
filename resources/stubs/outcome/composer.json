@@ -7,13 +7,13 @@
     },
     "autoload": {
         "psr-4": {
-            "NovaWorkflows\\Outcomes\\{{name}}\\": "src/"
+            "NovaWorkflows\\Outcomes\\{{app}}\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "NovaWorkflows\\Outcomes\\{{name}}\\{{name}}ServiceProvider"
+                "NovaWorkflows\\Outcomes\\{{app}}\\{{class}}ServiceProvider"
             ]
         }
     },

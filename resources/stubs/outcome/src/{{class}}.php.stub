@@ -1,10 +1,10 @@
 <?php
 
-namespace NovaWorkflows\Outcomes\{{name}};
+namespace NovaWorkflows\Outcomes\{{app}};
 
 use NovaWorkflows\Outcomes\Outcome;
 
-class {{name}} extends Outcome
+class {{class}} extends Outcome
 {
     public function handle()
     {
