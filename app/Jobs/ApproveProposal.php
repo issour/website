@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Workflow;
+use App\Jobs\TagRepository;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -35,11 +36,17 @@ class ApproveProposal implements ShouldQueue
         $this->chain([
             new CreateRepository($this->proposal->repository),
             new ConvertProposal($this->proposal),
+            new TagRepository($repository, $this->topics()),
             new FillRepository(
                 $this->proposal->repository,
                 resource_path($this->proposal->stub),
                 $this->proposal->toArray()
             ),
         ]);
+    }
+
+    public function topics()
+    {
+        return ['laravel', strtolower($this->proposal->app->title), 'laravel-nova'];
     }
 }
