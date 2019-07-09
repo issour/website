@@ -33,7 +33,9 @@ GITHUB_TOKEN=<personal-token>
 services.github.author
 ```
 
-> TODO: seeders
+```
+php artisan db:seed
+```
 
 ```
 phpunit
