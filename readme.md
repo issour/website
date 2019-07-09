@@ -1,12 +1,12 @@
 # novaworkflows.com
 
-Here is the complete source code for NovaWorkflows.com
+Here is the complete source code for novaworkflows.com
 
 ```
 git clone git@github.com:nova-workflows/website.git <some-folder>
 ```
 
-Install Nova
+> install Nova / auth.json etc
 
 ```
 composer update
@@ -33,7 +33,7 @@ GITHUB_TOKEN=<personal-token>
 services.github.author
 ```
 
-TODO: seeders
+> TODO: seeders
 
 ```
 phpunit
