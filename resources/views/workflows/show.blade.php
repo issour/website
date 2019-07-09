@@ -88,14 +88,18 @@
                         </div>
                     @endforeach
                 </div>
-                <p class="mb-6">For a complete reference of the bracket syntax, see: <a href="https://razorphp.com" target="_blank">RazorPHP</a></p>
 
-                <h3 class="text-3xl mb-3">Import options</h3>
-                <p>Running the following command will create a workflow with all the available options</p>
-                <p class="mb-6">This saves time by not having to reference and type each option.</p>
-                <blockquote class="bg-gray-800 text-white rounded-lg p-4">
+                <blockquote class="bg-gray-800 text-white rounded-lg p-4 mb-3">
                     php artisan nova:workflow {{ $workflow->id }}
                 </blockquote>
+                <p class="mb-6">This command will create a workflow with the available options in your Nova project</p>
+
+                <h3 class="text-2xl mb-3">Option Syntax</h3>
+                <p>The bracket syntax provides alot of power for how the workflows populate outcomes</p>
+                <p>The values are extracted from the trigger, ie "When a new user is created" a {user} is available</p>
+                <p class="mb-6">Pipe values into other methods for even more flexibility: { user.orders | sum:total }</p>
+                <p class="mb-6">For a complete reference of the bracket syntax, see: <a href="https://razorphp.com" target="_blank" class="bg-gray-100 border text-blue-500  font-bold rounded-full  py-1 px-3">RazorPHP</a></p>
+
             </div>
             @endif
 
