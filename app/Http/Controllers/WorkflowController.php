@@ -21,6 +21,7 @@ class WorkflowController extends Controller
         return view('workflows.show', [
             'workflow' => $workflow,
             'recipes' => $workflow->recipes,
+            'vote' => optional(auth()->user())->voteFor($workflow),
         ]);
     }
 }

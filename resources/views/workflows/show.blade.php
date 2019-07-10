@@ -47,9 +47,27 @@
         <div class="w-4/5">
             <img src="/{{ $workflow->banner }}" alt="" class="w-full mb-4">
             @if($workflow->inStaging())
-                <div class="p-12 mb-6 bg-gray-900 text-white">
-                    <h3 class="text-3xl mb-3">Staging</h3>
-                    <p>This integration has not yet been launched</p>
+                <div class="p-12 mb-6 bg-gray-900 text-white flex">
+                    <div class="w-1/2">
+                        <h3 class="text-3xl mb-3">Staging: Not Launched</h3>
+                        <p>This integration has not yet been launched</p>
+                    </div>
+                    <div class="w-1/2">
+                        <h3 class="text-3xl mb-3">{{ $workflow->votes }} votes</h3>
+                        <p>The most voted for integrations get priorty</p>
+                        @if(auth()->check() && !is_null($vote))
+                        <p class="mb-4">You voted on: {{ $vote->created_at->format('m/d/Y') }}</p>
+                        @elseif(auth()->check())
+                        <p class="mb-4">Click below to vote:</p>
+                        <form action="{{ route('votes.store', $workflow) }}" method="POST">
+                            @csrf
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded-full">Vote</button>
+                        </form>
+                        @else
+                        <p class="mb-4">You must be logged in to vote:</p>
+                        <a href="/login/github" class="bg-gray-600 text-white px-4 py-2 rounded-full">Login with Github</a>
+                        @endif
+                    </div>
                 </div>
             @endif
             <div id="overview" class="mb-6">

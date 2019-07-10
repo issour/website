@@ -27,6 +27,7 @@ class CreateWorkflowsTable extends Migration
             $table->text('installation_markdown');
             $table->string('youtube')->nullable();
             $table->string('repository');
+            $table->integer('votes')->default(0);
             $table->integer('stars')->default(0);
             $table->integer('issues')->default(0);
             $table->string('outcome')->nullable();
@@ -35,6 +36,7 @@ class CreateWorkflowsTable extends Migration
             $table->timestamps();
             $table->timestamp('drafted_at')->nullable();
             $table->timestamp('published_at')->nullable();
+            $table->string('og_twitter_image')->nullable();
         });
     }
 

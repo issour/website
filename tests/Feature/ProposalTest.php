@@ -16,6 +16,8 @@ class ProposalTest extends TestCase
 
     public function testViewingRequestForm()
     {
+        $this->spew();
+
         $response = $this->get('/new');
 
         $response
@@ -87,23 +89,5 @@ class ProposalTest extends TestCase
         $this->assertEquals('Send Gmail Message', $requests[0]->title);
         $this->assertEquals('It would be useful if we could send email through gmail', $requests[0]->description);
         $this->assertEquals('https://gmail.com', $requests[0]->url);
-    }
-
-    public function testApprovingProposals()
-    {
-        $proposal = factory(Proposal::class)->create([
-            'repository' => 'some-repo-name' . rand(500, 1000),
-            'stub' => 'stubs/outcome',
-            'app_id' => factory(App::class),
-        ]);
-
-        $this->mock(Client::class, function ($mock) {
-            $mock->shouldReceive('request');
-        });
-
-        dispatch(new ApproveProposal($proposal));
-
-        $this->assertEquals(1, Workflow::staging()->count());
-        $this->assertEquals('draft', Workflow::staging()->first()->status);
     }
 }

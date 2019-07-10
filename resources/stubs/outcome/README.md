@@ -1,5 +1,7 @@
 # {{name}}
 
+<img src="https://novaworkflows.com/storage/{{repository}}/900x300.jpg" alt="Laravel {{app}} integration using Nova"  width="100%">
+
 Here is the repository of the [Laravel Nova {{name}} integration]({{link}})
 
 ### ⚠ Staging: This has not launched yet.
@@ -35,9 +37,9 @@ Setup services config
 ```
 
     '{{name}}' => [
-    
+
         //
-    
+
     ],
-    
-```    
+
+```

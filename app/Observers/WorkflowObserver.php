@@ -7,6 +7,13 @@ use App\Jobs\Github\ModelRepository;
 
 class WorkflowObserver
 {
+    public function creating($workflow)
+    {
+        if (!file_exists($workflow->path())) {
+            mkdir($workflow->path());
+        }
+    }
+
     public function created($workflow)
     {
         $workflow->storeImport();

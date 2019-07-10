@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\User;
 use Laravel\Nova\Panel;
 use NovaErrorField\Errors;
 use Laravel\Nova\Fields\ID;
@@ -65,10 +66,11 @@ class Workflow extends Resource
             Text::make('Repository')->displayUsing(function () {
                 return '<a href="https://github.com/'.$this->repository.'" class="no-underline font-bold dim text-primary" target="_blank">'.$this->repository.'</a>';
             })->rules('required')->hideFromIndex()->asHtml(),
+            BelongsTo::make('App')->rules('required'),
+            DateTime::make('Published At')->sortable(),
             Number::make('Stars')->onlyOnDetail(),
             Number::make('Issues')->onlyOnDetail(),
-            BelongsTo::make('App')->rules('required'),
-            DateTime::make('Published At'),
+            Number::make('Votes')->sortable(),
 
             Text::make('Youtube')->hideFromIndex()->rules('required'),
             Text::make('Outcome')->hideFromIndex()->rules('required'),
@@ -78,9 +80,12 @@ class Workflow extends Resource
                 Image::make('Icon')->hideFromIndex(),
                 Image::make('Image')->hideFromIndex(),
                 Image::make('Banner')->hideFromIndex(),
+                Image::make('Twitter', 'og_twitter_image')->hideFromIndex(),
             ])),
 
             HasMany::make('Recipes'),
+
+            HasMany::make('Voters', 'voters', User::class),
         ];
     }
 

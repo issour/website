@@ -40,3 +40,11 @@ $factory->state(Workflow::class, 'live', [
 $factory->state(Workflow::class, 'staging', [
     'drafted_at' => now()->subDays(rand(20, 30)),
 ]);
+
+$factory->afterMakingState(Workflow::class, 'with-logo', function ($workflow, $faker) {
+    if (!file_exists($workflow->path())) {
+        mkdir($workflow->path());
+    }
+
+    copy(base_path('tests/Assets/logo.png'), $workflow->path('logo.png'));
+});

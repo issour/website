@@ -1,0 +1,28 @@
+dist: xenial
+
+language: php
+
+services:
+  - mysql
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.3
+
+before_install:
+  - phpenv config-rm xdebug.ini || true
+  - travis_retry composer self-update
+  - mysql -u root -e 'CREATE DATABASE testing;'
+
+env:
+  global:
+  - secure: Dzso3XWG4836+zf7+7Pz8iHop6Acy6i6HTeck8ND1rMYCNi0Nyz9Pwu9oHoaF6rC8AtO+Wdo2yoow4UT9CKNOvsR8AhE7CqgPMWcdtXF0OHpCkXJjW8h4ImWhTp/HGm9XFv/3081KRo9Rz9uNNFU1CoFIeImRG4G7/N8/uBnRPySuBaNtGQx5NqXVrjTQ5YfzBck7gKDtarkJfrcdxUksIgCBumG+a8auSsLij9jLgxdo1+/A6I2x7/LV0XsAPnTI2bpOQxWBjFjz8s6uEsPx349WIWgsKvgDQj0dbrQ/Vmp5vqpfEGRiQrNVUCanCTlTo8kXIRQbk7mNb2hMCmqsAAJwea7aZMPinWX5J6+sybbndwMKVd2CWJ/B1VI/Ze5h8WcdCjEWES9r9Q/9B/5bCk4jIg3F0mN7YKrM18Tbxgp5/O1TPmfvB9zL4Wv2StTC5eZho1InD1aAQxpAmDWWpwLDmsYluqRUra40EdU1+4AEC5lgkh7EM9iaPmBVwbJ7z2E6jlDVWb3vBZcmOg7VRir6VaTWh5NZjpUVa+GWMPA+W8Upbr0CT87EAP2ClIK3z9ODCK/gXHN2ahK4VNEjwl9CvLwOJDnNeOFHkX22j/8F+nhPVi69pM87xK0GM4iUBElY+oBGmFWmsW8J8ifWh8J/H4D3WH/wJaui3j9IJc=
+  - secure: HgE6FZPC+yt1o2eGv3ZZbvCOidB0fm0ml2i5DH96LAuyzNdF1SHUXh4c3JC1E9+RvdNrvhS7wZX5AJAd3grk9BHwiw2nV1fqONHXX4pQgr3uwgBDlNT2ajAu5G0s/irZubNcLScfdPzPVCNKY0z4U69X05pO/iDGgFJOaQwZ/1bO2mY3SJcVADJxW7YlwDZ5UTBmMTCnHrzteUx8IANCtlUWhKP6nd64j2GaVXj0JUpePTCoRynkbEVH8x1+Onrs7M3zIaW8lBKaFdDNEQVpR0vB4Z8CQ3pHrIGHdq71AAsJ8NQ9OWVwSfyJS4NMXPEdOc9x3k8n3f0iD9XbDwTPc9D5O2Ou63olLbC1JVAQYm9Y1Mkw0hYZt5jzpNuI1qywQ6Z4R8fnG7C2lVUntsqf7AtRojMb33WQE60TPzEjFMFSKMEQ1s6WD97ik8WLv2BnaeHBG5yrROgHfVyvHTzWha6Np5U4TS5rqHtCjQXsFEA7WuF5tkGfdAgP3HzoYJNaAChfO1vh7oIv1UOVPKvGZchKO5tBavuMAu8hw8u6VYGXFj/U5wNyfZziZkh8eoOzzN1vHad5pR2maYZshpK9YdLD+dks0BPYOA144TlvD00SDCNYUfCw9upb8ioF/MDR9QCCW0M/D8TOHA8L5Rt2biB8V1NgKHaowyxrZjvzJrw=
+
+install:
+  - echo "{\"http-basic\":{\"nova.laravel.com\":{\"username\":\"${NOVA_USERNAME}\",\"password\":\"${NOVA_PASSWORD}\"}}}" > auth.json
+  - travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable --no-suggest
+
+script:
+  - vendor/bin/phpunit
