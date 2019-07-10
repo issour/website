@@ -27,19 +27,21 @@ class GenerateImages implements ShouldQueue
 
         abort_if(!file_exists($workflow->path('logo.png')), 500, 'Logo required to create images');
 
+        $smallLogo = Image::make($workflow->path('logo.png'))
+            ->resize(200, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
         Image::make(resource_path('graphics/300x200.jpg'))
-            ->insert($workflow->path('logo.png'), 'center')
-            ->text($workflow->app->title, 120, 100)
+            ->insert($smallLogo, 'center')
             ->save($workflow->path('300x200.jpg'), 100);
 
         Image::make(resource_path('graphics/600x325.jpg'))
-            ->insert($workflow->path('logo.png'), 'center')
-            ->text($workflow->app->title, 120, 100)
+            ->insert($smallLogo, 'center')
             ->save($workflow->path('600x325.jpg'), 100);
 
         Image::make(resource_path('graphics/900x300.jpg'))
-            ->insert($workflow->path('logo.png'), 'center')
-            ->text($workflow->app->title, 120, 100)
+            ->insert($smallLogo, 'center')
             ->save($workflow->path('900x300.jpg'), 100);
     }
 }
