@@ -4,13 +4,14 @@ namespace App;
 
 use App\User;
 use App\Traits\HasSlug;
+use App\Traits\AssetPath;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Workflow extends Model
 {
-    use HasSlug;
+    use HasSlug, AssetPath;
 
     public $with = ['app'];
 
@@ -64,7 +65,7 @@ class Workflow extends Model
     {
         $properties = Arr::only($this->toArray(), ['title', 'outcome', 'options']);
 
-        // file_put_contents($this->path('import.json'), json_encode($properties));
+        file_put_contents($this->path('import.json'), json_encode($properties));
     }
 
     public function youtubeEmbedUrl()

@@ -80,6 +80,7 @@ class Workflow extends Resource
                 Image::make('Icon')->hideFromIndex(),
                 Image::make('Image')->hideFromIndex(),
                 Image::make('Banner')->hideFromIndex(),
+                Image::make('Twitter', 'og_twitter_image')->hideFromIndex(),
             ])),
 
             HasMany::make('Recipes'),

@@ -16,6 +16,8 @@ class ProposalTest extends TestCase
 
     public function testViewingRequestForm()
     {
+        $this->spew();
+
         $response = $this->get('/new');
 
         $response
