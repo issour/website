@@ -12,3 +12,8 @@ $factory->define(Proposal::class, function (Faker $faker) {
         'url' => $faker->url,
     ];
 });
+
+$factory->afterMakingState(Proposal::class, 'with-logo', function ($proposal, $faker) {
+    mkdir($proposal->path());
+    copy(base_path('tests/Assets/logo.png'), $proposal->path('logo.png'));
+});
