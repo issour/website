@@ -55,6 +55,8 @@ class GenerateImages implements ShouldQueue
                 $font->align('center');
                 $font->size(48);
             })->save($workflow->path('900x300.jpg'), 100);
+
+        Image::make($smallLogo)->save($workflow->path('logo-sm.jpg'), 100);
     }
 
     protected function fontFile()
