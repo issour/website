@@ -21,7 +21,7 @@ Route::get('staging', 'StagingController@index')->name('staging.index');
 Route::get('import/workflows/{id}.json', 'ImportController@show')->name('imports.show');
 Route::get('recipes/{slug}', 'RecipeController@show')->name('recipes.show');
 
-Route::get('login/github', 'LoginController@redirect')->name('login.github');
+Route::get('login/github', 'LoginController@redirect')->name('login');
 Route::get('login/github/callback', 'LoginController@callback');
 
 Route::get('new', 'ProposalController@create');
