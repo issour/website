@@ -19,4 +19,11 @@ trait AssetPath
 
         return asset("$prefix/{$this->repository}/$file");
     }
+
+    public function relativePath($file)
+    {
+        $prefix = (app()->environment('testing')) ? 'testing' : '';
+
+        return "/$prefix/{$this->repository}/$file";
+    }
 }
