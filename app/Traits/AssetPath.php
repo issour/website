@@ -8,11 +8,15 @@ trait AssetPath
 {
     public function path($file='')
     {
-        return storage_path("app/public/{$this->repository}/$file");
+        $prefix = (app()->environment('testing')) ? 'testing' : '';
+
+        return storage_path("app/public/$prefix/{$this->repository}/$file");
     }
 
     public function asset($file)
     {
-        return asset("{$this->repository}/$file");
+        $prefix = (app()->environment('testing')) ? 'testing' : '';
+
+        return asset("$prefix/{$this->repository}/$file");
     }
 }
