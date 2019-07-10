@@ -73,6 +73,17 @@ class Workflow extends Model
         return 'https://www.youtube.com/embed/' . Arr::get(explode('?v=', $this->youtube), 1);
     }
 
+    public function getTweetTextAttribute()
+    {
+        $emoji = ['🔥', '🚀'][rand(0, 1)];
+
+        $prefix = ($this->inStaging())
+            ? ['WIP', 'Coming soon', 'Upcoming'][rand(0, 2)]
+            : ['Checkout', 'Looks cool', 'Woohoo'][rand(0, 2)];
+
+        return  "$emoji $prefix: {$this->title} using Laravel Nova";
+    }
+
     public function app()
     {
         return $this->belongsTo(App::class);
