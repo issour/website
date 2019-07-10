@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Workflow;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,4 +37,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function workflows()
+    {
+        return $this->belongsToMany(Workflow::class, 'votes');
+    }
+
+    public function voteFor($workflow)
+    {
+        return Vote::where([
+            'user_id' => $this->id,
+            'workflow_id' => $workflow->id,
+        ])->first();
+    }
 }
