@@ -8,6 +8,7 @@ use App\Jobs\ConvertProposal;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Fields\Text;
 use App\Jobs\CreateRepository;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Actions\Action;
 use Illuminate\Support\Collection;
@@ -24,15 +25,15 @@ class Approve extends Action
 
     public function handle(ActionFields $fields, Collection $proposals)
     {
-        $fields = $fields->toArray();
-
         $proposal = $proposals->first();
 
         abort_if(!is_null($proposal->approved_at), 500, 'Proposal already approved');
 
+        $fields->logo->move(storage_path("app/public/{$fields->repository}"), 'logo.png');
+
         $proposal->update([
-            'app_id' => $fields['app_id'],
-            'repository' => $fields['repository'],
+            'app_id' => $fields->app_id,
+            'repository' => $fields->repository,
             'stub' => 'stubs/outcome',
             'approved_at' => now(),
         ]);
@@ -48,6 +49,8 @@ class Approve extends Action
     public function fields()
     {
         return [
+            Image::make('Logo')->rules('required', 'mimes:png', 'dimensions:min_width=200,min_height=200'),
+
             Select::make('App', 'app_id')
                 ->options(App::all()->pluck('title', 'id'))
                 ->rules('required'),
