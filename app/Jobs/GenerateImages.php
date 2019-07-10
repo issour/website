@@ -25,7 +25,9 @@ class GenerateImages implements ShouldQueue
     {
         $workflow = Workflow::where('repository', $this->repository)->firstOrFail();
 
-        abort_if(!file_exists($workflow->path('logo.png')), 500, 'Logo required to create images');
+        if (!file_exists($workflow->path('logo.png'))) {
+            abort(500, 'Logo required to create images');
+        }
 
         $smallLogo = Image::make($workflow->path('logo.png'))
             ->resize(200, null, function ($constraint) {
