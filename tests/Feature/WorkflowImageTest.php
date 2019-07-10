@@ -26,9 +26,5 @@ class WorkflowImageTest extends TestCase
         $this->assertFileIsReadable($workflow->path('300x200.jpg'));
         $this->assertFileIsReadable($workflow->path('600x325.jpg'));
         $this->assertFileIsReadable($workflow->path('900x300.jpg'));
-
-        $this->assertNotEmpty(file_get_contents($workflow->asset('300x200.jpg')));
-        $this->assertNotEmpty(file_get_contents($workflow->asset('600x325.jpg')));
-        $this->assertNotEmpty(file_get_contents($workflow->asset('900x300.jpg')));
     }
 }
