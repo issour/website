@@ -3,13 +3,14 @@
 namespace App;
 
 use App\Traits\HasSlug;
+use App\Traits\AssetPath;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Workflow extends Model
 {
-    use HasSlug;
+    use HasSlug, AssetPath;
 
     public $with = ['app'];
 

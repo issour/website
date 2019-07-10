@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Traits\AssetPath;
 use Illuminate\Database\Eloquent\Model;
 
 class Proposal extends Model
 {
+    use AssetPath;
+
     public $appends = ['status'];
 
     public $casts = [
