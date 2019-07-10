@@ -57,6 +57,12 @@ class GenerateImages implements ShouldQueue
             })->save($workflow->path('900x300.jpg'), 100);
 
         Image::make($smallLogo)->save($workflow->path('logo-sm.jpg'), 100);
+
+        $workflow->update([
+            'image' => $workflow->relativePath('300x200.jpg'),
+            'banner' => $workflow->relativePath('900x300.jpg'),
+            'og_twitter_image' => $workflow->relativePath('600x325.jpg'),
+        ]);
     }
 
     protected function fontFile()

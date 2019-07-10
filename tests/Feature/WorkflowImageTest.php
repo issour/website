@@ -26,5 +26,11 @@ class WorkflowImageTest extends TestCase
         $this->assertFileIsReadable($workflow->path('300x200.jpg'));
         $this->assertFileIsReadable($workflow->path('600x325.jpg'));
         $this->assertFileIsReadable($workflow->path('900x300.jpg'));
+
+        tap($workflow->fresh(), function ($workflow) {
+            $this->assertEquals($workflow->relativePath('300x200.jpg'), $workflow->image);
+            $this->assertEquals($workflow->relativePath('600x325.jpg'), $workflow->og_twitter_image);
+            $this->assertEquals($workflow->relativePath('900x300.jpg'), $workflow->banner);
+        });
     }
 }
