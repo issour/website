@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Workflow;
+use App\Jobs\GenerateImages;
 use App\Jobs\ConvertProposal;
 use Illuminate\Bus\Queueable;
 use App\Jobs\Github\TagRepository;
@@ -41,6 +42,7 @@ class ApproveProposal implements ShouldQueue
         $this->chain([
             new CreateRepository($repository),
             new ConvertProposal($this->proposal),
+            new GenerateImages($repository),
             new TagRepository($repository, $this->topics()),
             new FillRepository(
                 $repository,
