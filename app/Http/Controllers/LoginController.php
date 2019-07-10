@@ -33,7 +33,7 @@ class LoginController extends Controller
             return redirect()->route('login.github');
         }
 
-        $user = User::firstOrCreate(['github' => $user->nickname ], [
+        $user = User::firstOrCreate(['email' => $user->email ], [
             'name' => $user->name,
             'email' => $user->email,
             'github' => $user->nickname,
@@ -42,6 +42,6 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('home');
+        return back();
     }
 }
