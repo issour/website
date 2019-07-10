@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@php
+use Illuminate\Support\Str;
+@endphp
+
 @push('head')
 <meta name="nova" content="resource=workflows, id={{$workflow->id}}" />
 <link rel="stylesheet" href="{{ mix('css/markdown.css') }}">
@@ -55,7 +59,7 @@
                         <p>This integration has not yet been launched</p>
                     </div>
                     <div class="w-1/2">
-                        <h3 class="text-3xl mb-3">{{ $workflow->votes }} votes</h3>
+                        <h3 class="text-3xl mb-3">{{ $workflow->votes }} {{ Str::plural('vote', $workflow->votes) }}</h3>
                         <p>The most voted for integrations get priorty</p>
                         @if(auth()->check() && !is_null($vote))
                         <p class="mb-4">You voted on: {{ $vote->created_at->format('m/d/Y') }}</p>
