@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Workflow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -9,10 +10,8 @@ class ImportController extends Controller
 {
     public function show($id)
     {
-        if (Storage::exists("workflows/$id.json")) {
-            return Storage::get("workflows/$id.json");
-        }
+        $workflow = Workflow::findOrFail($id);
 
-        return [];
+        return file_get_contents($workflow->path('import.json'));
     }
 }
