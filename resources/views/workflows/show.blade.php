@@ -59,6 +59,7 @@
                         <p>The most voted for integrations get priorty</p>
                         @if(auth()->check() && !is_null($vote))
                         <p class="mb-4">You voted on: {{ $vote->created_at->format('m/d/Y') }}</p>
+                        <a href="https://twitter.com/intent/tweet?text={{$workflow->tweetText}}%0D%0A&hashtags=laravel,laravelnova,php&related=laravelphp&url={{request()->url()}}" class="bg-blue-500 text-white px-4 py-2 rounded-full" target="_blank">Tweet This</a>
                         @elseif(auth()->check())
                         <p class="mb-4">Click below to vote:</p>
                         <form action="{{ route('votes.store', $workflow) }}" method="POST">
