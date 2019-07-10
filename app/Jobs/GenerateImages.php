@@ -38,10 +38,25 @@ class GenerateImages implements ShouldQueue
 
         Image::make(resource_path('graphics/600x325.jpg'))
             ->insert($smallLogo, 'center')
-            ->save($workflow->path('600x325.jpg'), 100);
+            ->text("Laravel & " . $workflow->app->title, 120, 100, function ($font) {
+                $font->file($this->fontFile());
+                $font->color('#ffffff');
+                $font->align('center');
+                $font->size(32);
+            })->save($workflow->path('600x325.jpg'), 100);
 
         Image::make(resource_path('graphics/900x300.jpg'))
             ->insert($smallLogo, 'center')
-            ->save($workflow->path('900x300.jpg'), 100);
+            ->text("Laravel & " . $workflow->app->title, 120, 100, function ($font) {
+                $font->file($this->fontFile());
+                $font->color('#ffffff');
+                $font->align('center');
+                $font->size(48);
+            })->save($workflow->path('900x300.jpg'), 100);
+    }
+
+    protected function fontFile()
+    {
+        return resource_path('fonts/open-sans/bold.ttf');
     }
 }
