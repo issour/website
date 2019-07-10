@@ -45,7 +45,9 @@
     </div>
     <div class="container mx-auto flex">
         <div class="w-4/5">
-            <img src="/{{ $workflow->banner }}" alt="" class="w-full mb-4">
+            @if($workflow->banner)
+                <img src="{{ $workflow->asset('900x300.jpg') }}" alt="" class="w-full mb-4">
+            @endif
             @if($workflow->inStaging())
                 <div class="p-12 mb-6 bg-gray-900 text-white flex">
                     <div class="w-1/2">
