@@ -65,7 +65,7 @@ class Workflow extends Model
     {
         $properties = Arr::only($this->toArray(), ['title', 'outcome', 'options']);
 
-        // file_put_contents($this->path('import.json'), json_encode($properties));
+        file_put_contents($this->path('import.json'), json_encode($properties));
     }
 
     public function youtubeEmbedUrl()
