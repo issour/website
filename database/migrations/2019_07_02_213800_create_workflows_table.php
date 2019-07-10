@@ -27,6 +27,7 @@ class CreateWorkflowsTable extends Migration
             $table->text('installation_markdown');
             $table->string('youtube')->nullable();
             $table->string('repository');
+            $table->integer('votes')->default(0);
             $table->integer('stars')->default(0);
             $table->integer('issues')->default(0);
             $table->string('outcome')->nullable();

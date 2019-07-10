@@ -22,4 +22,9 @@ abstract class TestCase extends BaseTestCase
 
         parent::tearDown();
     }
+
+    public function spew()
+    {
+        $this->withoutExceptionHandling();
+    }
 }

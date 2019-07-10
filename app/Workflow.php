@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use App\Traits\HasSlug;
 use App\Traits\AssetPath;
 use Illuminate\Support\Arr;
@@ -50,6 +51,11 @@ class Workflow extends Model
         return $this->status != 'published';
     }
 
+    public function isPublished()
+    {
+        return $this->status == 'published';
+    }
+
     public function getStatusAttribute()
     {
         return is_null($this->published_at) ? 'draft' : 'published';
@@ -59,7 +65,7 @@ class Workflow extends Model
     {
         $properties = Arr::only($this->toArray(), ['title', 'outcome', 'options']);
 
-        Storage::put("workflows/{$this->id}.json", json_encode($properties));
+        // file_put_contents($this->path('import.json'), json_encode($properties));
     }
 
     public function youtubeEmbedUrl()
@@ -75,5 +81,10 @@ class Workflow extends Model
     public function recipes()
     {
         return $this->hasMany(Recipe::class);
+    }
+
+    public function voters()
+    {
+        return $this->belongsToMany(User::class, 'votes');
     }
 }
