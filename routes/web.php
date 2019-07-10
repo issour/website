@@ -26,3 +26,7 @@ Route::get('login/github/callback', 'LoginController@callback');
 
 Route::get('new', 'ProposalController@create');
 Route::post('new', 'ProposalController@store');
+
+Route::middleware('auth')->group(function () {
+    Route::post('votes/{id}', 'VoteController@store')->name('votes.store');
+});
