@@ -1,6 +1,7 @@
 <?php
 
 use App\App;
+use App\User;
 use App\Recipe;
 use App\Proposal;
 use App\Workflow;
@@ -30,5 +31,9 @@ class DatabaseSeeder extends Seeder
         factory(Recipe::class, 100)->create();
         factory(Subscription::class, 100)->state('workflow')->create();
         factory(Subscription::class, 100)->create();
+
+        User::each(function ($user) {
+            $user->votes()->sync(Workflow::inRandomOrder()->first());
+        });
     }
 }
