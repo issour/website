@@ -86,6 +86,8 @@ class Workflow extends Resource
             HasMany::make('Recipes'),
 
             HasMany::make('Voters', 'voters', User::class),
+
+            HasMany::make('Subscriptions'),
         ];
     }
 
