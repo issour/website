@@ -46,10 +46,12 @@ class WorkflowLaunchTest extends TestCase
 
         dispatch(new LaunchWorkflow($workflow));
 
-
         Notification::assertSentTo(
             $workflow->subscribers,
-            WorkflowLaunch::class
+            WorkflowLaunch::class,
+            function ($notification, $channels) use ($workflow) {
+                return $notification->workflow->id === $workflow->id;
+            }
         );
     }
 }
