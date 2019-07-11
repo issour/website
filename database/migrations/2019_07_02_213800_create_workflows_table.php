@@ -34,7 +34,7 @@ class CreateWorkflowsTable extends Migration
             $table->json('options')->nullable();
             $table->integer('app_id');
             $table->timestamps();
-            $table->timestamp('drafted_at')->nullable();
+            $table->timestamp('staged_at')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->string('og_twitter_image')->nullable();
         });

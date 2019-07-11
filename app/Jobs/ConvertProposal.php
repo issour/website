@@ -40,7 +40,7 @@ class ConvertProposal implements ShouldQueue
             'description_markdown' => $this->proposal->description,
             'installation_markdown' => 'This integration is still in progress',
             'repository' => $this->proposal->repository,
-            'drafted_at' => now(),
+            'staged_at' => now(),
             'app_id' => $this->proposal->app_id,
             'icon' => 'https://placehold.it/24x24&text=coming-soon',
             'image' => 'https://placehold.it/300x250&text=coming-soon',
