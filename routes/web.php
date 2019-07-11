@@ -32,3 +32,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('subscribe', 'SubscriptionController@store')->name('subscription.store');
+Route::get('unsubscribe', 'SubscriptionController@edit')->name('subscription.edit');
+Route::delete('unsubscribe', 'SubscriptionController@destroy')->name('subscription.destroy');
