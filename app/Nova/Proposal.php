@@ -4,13 +4,13 @@ namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
 use App\Nova\Actions\Reject;
-use App\Nova\Filters\Status;
 use Illuminate\Http\Request;
 use App\Nova\Actions\Approve;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Textarea;
+use App\Nova\Filters\ProposalStatus;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Proposal extends Resource
@@ -82,7 +82,7 @@ class Proposal extends Resource
     public function filters(Request $request)
     {
         return [
-            new Status,
+            new ProposalStatus,
         ];
     }
 

@@ -5,7 +5,7 @@ namespace App\Nova\Filters;
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\Filter;
 
-class Status extends Filter
+class ProposalStatus extends Filter
 {
     /**
      * The filter's component.
