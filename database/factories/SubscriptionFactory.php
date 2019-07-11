@@ -11,3 +11,9 @@ $factory->define(Subscription::class, function (Faker $faker) {
         'email' => $faker->email,
     ];
 });
+
+$factory->state(Subscription::class, 'workflow', function ($faker) {
+    return [
+        'workflow_id' => factory(Workflow::class),
+    ];
+});

@@ -119,4 +119,31 @@ class SubscriptionTest extends TestCase
         $this->assertEquals(1, Subscription::general()->count());
         $this->assertEquals(1, Subscription::workflows()->count());
     }
+
+    public function testCanSeeUnsubscribeForm()
+    {
+        $this->get('/unsubscribe')
+            ->assertOk()
+            ->assertSee('Unsubscribe')
+            ->assertSee('You will be removed from all notifications');
+    }
+
+    public function testSubmittingUnsubscribeRequiresAnEmail()
+    {
+        $this->delete('/unsubscribe', ['email' => ''])
+             ->assertSessionHasErrors('email');
+    }
+
+    public function testSubmittingUnsubscribeRemovesAllSubscriptions()
+    {
+        $subscription = factory(Subscription::class)->create();
+
+        factory(Subscription::class)
+            ->state('workflow')
+            ->create(['email' => $subscription->email]);
+
+        $this->delete('/unsubscribe', ['email' => $subscription->email]);
+
+        $this->assertEquals(0, Subscription::count());
+    }
 }

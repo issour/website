@@ -24,4 +24,20 @@ class SubscriptionController extends Controller
 
         return redirect()->back()->with('status', 'success');
     }
+
+    public function edit()
+    {
+        return view('subscriptions.edit');
+    }
+
+    public function destroy(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        Subscription::where('email', $request->email)->delete();
+
+        return back()->with('status', 'success');
+    }
 }
