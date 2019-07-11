@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function votes()
     {
-        return $this->belongsToMany(Workflow::class, 'votes');
+        return $this->belongsToMany(Workflow::class, 'votes')->withTimestamps();
     }
 
     public function voteFor($workflow)
