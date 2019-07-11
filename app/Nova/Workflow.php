@@ -18,6 +18,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\KeyValue;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\BelongsTo;
+use App\Nova\Filters\WorkflowStatus;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Workflow extends Resource
@@ -112,7 +113,9 @@ class Workflow extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new WorkflowStatus,
+        ];
     }
 
     /**
