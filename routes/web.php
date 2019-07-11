@@ -30,3 +30,5 @@ Route::post('new', 'ProposalController@store');
 Route::middleware('auth')->group(function () {
     Route::post('votes/{id}', 'VoteController@store')->name('votes.store');
 });
+
+Route::post('subscribe', 'SubscriptionController@store')->name('subscription.store');
