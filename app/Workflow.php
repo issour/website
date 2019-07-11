@@ -100,7 +100,7 @@ class Workflow extends Model
         return $this->belongsToMany(User::class, 'votes');
     }
 
-    public function subscriptions()
+    public function subscribers()
     {
         return $this->hasMany(Subscription::class);
     }
