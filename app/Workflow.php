@@ -20,7 +20,7 @@ class Workflow extends Model
 
     public $casts = [
         'options' => 'array',
-        'drafted_at' => 'datetime',
+        'staged_at' => 'datetime',
         'published_at' => 'datetime',
     ];
 
@@ -44,7 +44,7 @@ class Workflow extends Model
         $query
             ->withoutGlobalScope(Published::class)
             ->whereNull('published_at')
-            ->whereNotNull('drafted_at');
+            ->whereNotNull('staged_at');
     }
 
     public function inStaging()
