@@ -58,12 +58,14 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
+            Text::make('Github')->exceptOnForms(),
+
             Password::make('Password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            HasMany::make('Voted Workflows', 'workflows', Workflow::class),
+            HasMany::make('Workflow Votes', 'workflows', Workflow::class),
         ];
     }
 
