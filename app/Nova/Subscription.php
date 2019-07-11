@@ -48,7 +48,7 @@ class Subscription extends Resource
             ID::make()->sortable(),
             Text::make('Email'),
             BelongsTo::make('Workflow'),
-            DateTime::make('Created At'),
+            DateTime::make('Created At')->exceptOnForms(),
         ];
     }
 

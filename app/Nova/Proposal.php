@@ -56,7 +56,7 @@ class Proposal extends Resource
                 'rejected' => 'bg-danger',
                 'approved' => 'bg-success',
             ]),
-            DateTime::make('Created At'),
+            DateTime::make('Created At')->exceptOnForms(),
             DateTime::make('Approved At')->onlyOnDetail(),
             DateTime::make('Rejected At')->onlyOnDetail(),
         ];
