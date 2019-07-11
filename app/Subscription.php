@@ -4,9 +4,12 @@ namespace App;
 
 use App\Workflow;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Subscription extends Model
 {
+    use Notifiable;
+
     public function scopeGeneral($query)
     {
         $query->whereNull('workflow_id');
