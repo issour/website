@@ -10,6 +10,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class WorkflowLaunchTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testCannotLaunchLiveWorkflows()
     {
         $this->expectExceptionMessage('Cannot launch a published workflow');
