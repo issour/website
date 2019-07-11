@@ -34,6 +34,9 @@ class WorkflowLaunchTest extends TestCase
             $this->assertTrue($workflow->isPublished());
             $this->assertFalse($workflow->inStaging());
         });
+
+        $this->get('/workflows')->assertSee($workflow->title);
+        $this->get('/staging')->assertDontSee($workflow->title);
     }
 
     public function testLaunchNotifiesSubscribers()
