@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use App\Jobs\NotifyLaunchSubscribers;
+use App\Notifications\WorkflowLaunch;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -37,5 +38,9 @@ class LaunchWorkflow implements ShouldQueue
         $this->workflow->update([
             'published_at' => now()
         ]);
+
+        $this->workflow->subscribers->each(function ($subscriber) {
+            $subscriber->notify(new WorkflowLaunch($this->workflow));
+        });
     }
 }
