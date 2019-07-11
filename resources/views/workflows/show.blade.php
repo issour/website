@@ -53,27 +53,50 @@ use Illuminate\Support\Str;
                 <img src="{{ $workflow->asset('900x300.jpg') }}" alt="" class="w-full mb-4">
             @endif
             @if($workflow->inStaging())
-                <div class="p-12 mb-6 bg-gray-900 text-white flex">
-                    <div class="w-1/2">
-                        <h3 class="text-3xl mb-3">Staging: Not Launched</h3>
-                        <p>This integration has not yet been launched</p>
-                    </div>
-                    <div class="w-1/2">
-                        <h3 class="text-3xl mb-3">{{ $workflow->votes }} {{ Str::plural('vote', $workflow->votes) }}</h3>
-                        <p>The most voted for integrations get priorty</p>
-                        @if(auth()->check() && !is_null($vote))
-                        <p class="mb-4">You voted on: {{ $vote->created_at->format('m/d/Y') }}</p>
-                        <a href="https://twitter.com/intent/tweet?text={{$workflow->tweetText}}%0D%0A&hashtags=laravel,laravelnova,php&related=laravelphp&url={{request()->url()}}" class="bg-blue-500 text-white px-4 py-2 rounded-full" target="_blank">Tweet This</a>
-                        @elseif(auth()->check())
-                        <p class="mb-4">Click below to vote:</p>
-                        <form action="{{ route('votes.store', $workflow) }}" method="POST">
-                            @csrf
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-full">Vote</button>
-                        </form>
-                        @else
-                        <p class="mb-4">You must be logged in to vote:</p>
-                        <a href="/login/github" class="bg-gray-600 text-white px-4 py-2 rounded-full">Login with Github</a>
-                        @endif
+                <div class="p-12 mb-6 bg-gray-900 text-white">
+                    <h3 class="text-3xl mb-3 text-center">Staging: Not Launched</h3>
+                    <p>This integration has not yet been launched</p>
+                    <div class="flex">
+                        <div class="w-1/3">
+                            <div id="subscribe" class="w-full">
+                                <h3 class=" mb-3">Get notified when launched</h3>
+                                <div class="w-full relative flex">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current text-gray-400" width="24" height="24" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+                                    </div>
+                                    <form class="flex-1 flex" action="{{ route('subscription.store') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="workflow_id" value="{{ $workflow->id }}">
+                                        <input type="email" placeholder="email@example.com" name="email" value="{{ old('email') }}" class="block w-full border border-gray-300 bg-white focus:outline-none  focus:border-gray-500 text-gray-900 rounded-lg pl-16 pr-6 py-3 text-lg">
+                                        <button class="w-2/5 ml-2 bg-blue-500 text-white px-4 py-2 rounded-full">Subscribe</button>
+                                    </form>
+                                </div>
+                                @error('email')
+                                    <p class="text-red-500">{{ $errors->first('email') }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="w-1/3">
+                            <h3>Share ideas</h3>
+                            <p>You can contribute ideas on the github repository made for this future integration</p>
+                        </div>
+                        <div class="w-1/3">
+                            <h3 class="text-3xl mb-3">{{ $workflow->votes }} {{ Str::plural('vote', $workflow->votes) }}</h3>
+                            <p>The most voted for integrations get priorty</p>
+                            @if(auth()->check() && !is_null($vote))
+                            <p class="mb-4">You voted on: {{ $vote->created_at->format('m/d/Y') }}</p>
+                            <a href="https://twitter.com/intent/tweet?text={{$workflow->tweetText}}%0D%0A&hashtags=laravel,laravelnova,php&related=laravelphp&url={{request()->url()}}" class="bg-blue-500 text-white px-4 py-2 rounded-full" target="_blank">Tweet This</a>
+                            @elseif(auth()->check())
+                            <p class="mb-4">Click below to vote:</p>
+                            <form action="{{ route('votes.store', $workflow) }}" method="POST">
+                                @csrf
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded-full">Vote</button>
+                            </form>
+                            @else
+                            <p class="mb-4">You must be logged in to vote:</p>
+                            <a href="/login/github" class="bg-gray-600 text-white px-4 py-2 rounded-full">Login with Github</a>
+                            @endif
+                        </div>
                     </div>
                 </div>
             @endif
