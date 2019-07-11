@@ -11,6 +11,8 @@ class WorkflowLaunch extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $workflow;
+
     /**
      * Create a new notification instance.
      *
