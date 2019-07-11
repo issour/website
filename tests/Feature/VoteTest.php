@@ -117,7 +117,7 @@ class VoteTest extends TestCase
         $this->be($user);
         $this->post("votes/{$workflow->id}");
 
-        $this->assertTrue($user->workflows->contains($workflow)) ;
+        $this->assertTrue($user->votes->contains($workflow)) ;
         $this->assertTrue($workflow->voters->contains($user));
     }
 }
