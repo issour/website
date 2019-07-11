@@ -83,8 +83,8 @@ class SubscriptionTest extends TestCase
 
         $this->assertEquals(1, Subscription::count());
         $this->assertEquals($workflow->id, Subscription::first()->workflow->id);
-        $this->assertCount(1, $workflow->subscriptions);
-        $this->assertEquals(Subscription::first()->id, $workflow->subscriptions->first()->id);
+        $this->assertCount(1, $workflow->subscribers);
+        $this->assertEquals(Subscription::first()->id, $workflow->subscribers->first()->id);
 
         $response->assertRedirect("workflows/$workflow->slug");
         $response->assertSessionHas('status', 'success');
