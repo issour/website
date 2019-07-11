@@ -4,8 +4,10 @@ namespace App\Nova;
 
 use App\Nova\User;
 use Laravel\Nova\Panel;
+use App\Nova\Subscription;
 use NovaErrorField\Errors;
 use Laravel\Nova\Fields\ID;
+use App\Nova\Actions\Launch;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\Text;
@@ -87,7 +89,7 @@ class Workflow extends Resource
 
             HasMany::make('Voters', 'voters', User::class),
 
-            HasMany::make('Subscriptions'),
+            HasMany::make('Subscribers', 'subscribers', Subscription::class),
         ];
     }
 
@@ -132,6 +134,8 @@ class Workflow extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new Launch
+        ];
     }
 }
