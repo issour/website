@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Subscription;
 use App\Traits\HasSlug;
 use App\Traits\AssetPath;
 use Illuminate\Support\Arr;
@@ -97,5 +98,10 @@ class Workflow extends Model
     public function voters()
     {
         return $this->belongsToMany(User::class, 'votes');
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
     }
 }
