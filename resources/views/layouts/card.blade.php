@@ -2,7 +2,7 @@
     @if($workflow->image)
         <div class="relative h-64">
             <a href="{{ route('workflows.show', $workflow->slug) }}">
-                <img src="{{ $workflow->image }}" alt="{{ $workflow->title }}" class="absolute inset-0 h-full w-full object-cover">
+                <img src="{{ $workflow->asset('300x200.jpg') }}" alt="{{ $workflow->title }}" class="absolute inset-0 h-full w-full object-cover">
             </a>
         </div>
     @endif

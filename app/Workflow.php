@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Subscription;
 use App\Traits\HasSlug;
 use App\Traits\AssetPath;
 use Illuminate\Support\Arr;
@@ -73,6 +74,17 @@ class Workflow extends Model
         return 'https://www.youtube.com/embed/' . Arr::get(explode('?v=', $this->youtube), 1);
     }
 
+    public function getTweetTextAttribute()
+    {
+        $emoji = ['🔥', '🚀'][rand(0, 1)];
+
+        $prefix = ($this->inStaging())
+            ? ['WIP', 'Coming soon', 'Upcoming'][rand(0, 2)]
+            : ['Checkout', 'Looks cool', 'Woohoo'][rand(0, 2)];
+
+        return  "$emoji $prefix: {$this->title} using Laravel Nova";
+    }
+
     public function app()
     {
         return $this->belongsTo(App::class);
@@ -86,5 +98,10 @@ class Workflow extends Model
     public function voters()
     {
         return $this->belongsToMany(User::class, 'votes');
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
     }
 }
