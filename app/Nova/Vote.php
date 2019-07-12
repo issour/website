@@ -32,6 +32,20 @@ class Vote extends Resource
         'id',
     ];
 
+    public static $with = [
+        'user', 'workflow',
+    ];
+
+    public function title()
+    {
+        return $this->user->name;
+    }
+
+    public function subtitle()
+    {
+        return $this->workflow->title;
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
