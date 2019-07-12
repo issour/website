@@ -9,7 +9,7 @@ class ProposalController extends Controller
 {
     public function create()
     {
-        return view('workflow-requests.create');
+        return view('proposals.create');
     }
 
     public function store(Request $request)
