@@ -25,7 +25,7 @@ class Subscription extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'email';
 
     /**
      * The columns that should be searched.
@@ -34,6 +34,20 @@ class Subscription extends Resource
      */
     public static $search = [
         'id', 'email',
+    ];
+
+    public function subtitle()
+    {
+        return data_get($this, 'workflow.title', 'General');
+    }
+
+    /**
+     * The columns that should be eager loaded.
+     *
+     * @var array
+     */
+    public static $with = [
+        'workflow',
     ];
 
     /**
