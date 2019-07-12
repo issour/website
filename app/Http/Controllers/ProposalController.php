@@ -9,15 +9,16 @@ class ProposalController extends Controller
 {
     public function create()
     {
-        return view('workflow-requests.create');
+        return view('proposals.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required','min:10','max:60'],
-            'description' => ['required','min:20','max:500'],
-            'url' => ['required','url'],
+            'title' => 'required|min:10|max:60',
+            'description' => 'required|min:20|max:500',
+            'url' => 'required|url',
+            'email' => 'nullable|email',
         ]);
 
         Proposal::create(

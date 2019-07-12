@@ -3,8 +3,6 @@
 namespace App\Nova\Actions;
 
 use App\App;
-use App\Jobs\ApproveProposal;
-use App\Jobs\ConvertProposal;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Fields\Text;
 use App\Jobs\CreateRepository;
@@ -14,6 +12,7 @@ use Laravel\Nova\Actions\Action;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Fields\ActionFields;
 use Illuminate\Queue\SerializesModels;
+use App\Jobs\Proposals\ApproveProposal;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -27,18 +26,15 @@ class Approve extends Action
     {
         $proposal = $proposals->first();
 
-        abort_if(!is_null($proposal->approved_at), 500, 'Proposal already approved');
-
         $fields->logo->move(storage_path("app/public/{$fields->repository}"), 'logo.png');
 
         $proposal->update([
             'app_id' => $fields->app_id,
             'repository' => $fields->repository,
             'stub' => 'stubs/outcome',
-            'approved_at' => now(),
         ]);
 
-        dispatch(new ApproveProposal($proposal->fresh()));
+        dispatch(new ApproveProposal($proposal));
     }
 
     /**

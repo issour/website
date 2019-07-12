@@ -51,6 +51,7 @@ class Proposal extends Resource
             Text::make('Title')->rules('required'),
             Textarea::make('Description')->rules('required'),
             Text::make('Url')->rules('required')->hideFromIndex(),
+            Text::make('Email')->hideFromIndex(),
             Badge::make('Status')->types([
                 'requested' => 'bg-20',
                 'rejected' => 'bg-danger',

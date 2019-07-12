@@ -35,6 +35,9 @@ class FillRepository implements ShouldQueue
 
     public function handle()
     {
+        abort_if(!file_exists($this->source), 500, 'Source does not exist');
+        abort_if(is_null(Arr::get($this->values, 'app.title')), 500, 'App required');
+
         Stub::source($this->source)->output(function ($path, $content) {
             app(Client::class)->request('PUT', $this->endpoint($path), [
                 'json' => [
@@ -51,7 +54,7 @@ class FillRepository implements ShouldQueue
         return "https://api.github.com/repos/{$this->owner}/{$this->repository}/contents/$path?access_token={$this->token}";
     }
 
-    protected function variables()
+    public function variables()
     {
         return [
             'app' => Arr::get($this->values, 'app.title'),

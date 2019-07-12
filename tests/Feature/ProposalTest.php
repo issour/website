@@ -7,7 +7,7 @@ use App\Proposal;
 use App\Workflow;
 use Tests\TestCase;
 use GuzzleHttp\Client;
-use App\Jobs\ApproveProposal;
+use App\Jobs\Proposals\ApproveProposal;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ProposalTest extends TestCase
@@ -70,6 +70,22 @@ class ProposalTest extends TestCase
 
         $response->assertSessionHasErrors([
             'url' => 'The url format is invalid.',
+        ]);
+    }
+
+    public function testCanSeeEmailFieldIsOptional()
+    {
+        $this->get('/new')->assertSee('Email: (optional)');
+    }
+
+    public function testCanOptionallySubmitValidEmail()
+    {
+        $response = $this->post('/new', [
+            'email' => 'blah'
+        ]);
+
+        $response->assertSessionHasErrors([
+            'email' => 'The email must be a valid email address.',
         ]);
     }
 

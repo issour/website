@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Proposals;
 
 use App\Workflow;
 use Illuminate\Support\Str;
@@ -33,7 +33,7 @@ class ConvertProposal implements ShouldQueue
      */
     public function handle()
     {
-        Workflow::create([
+        $workflow = Workflow::create([
             'title' => $this->proposal->title,
             'slug' => $this->proposal->repository,
             'blurb' => Str::limit($this->proposal->description, 60),
@@ -46,5 +46,11 @@ class ConvertProposal implements ShouldQueue
             'image' => 'https://placehold.it/300x250&text=coming-soon',
             'banner' => 'https://placehold.it/900x350&text=coming-soon',
         ]);
+
+        if ($this->proposal->email) {
+            $workflow->subscribers()->create([
+                'email' => $this->proposal->email
+            ]);
+        }
     }
 }

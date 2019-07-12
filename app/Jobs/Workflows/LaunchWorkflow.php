@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Workflows;
 
 use Illuminate\Bus\Queueable;
 use App\Jobs\NotifyLaunchSubscribers;

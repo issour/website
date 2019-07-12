@@ -5,14 +5,14 @@ namespace App;
 use App\User;
 use App\Subscription;
 use App\Traits\HasSlug;
-use App\Traits\AssetPath;
 use Illuminate\Support\Arr;
+use App\Traits\RepositoryAssets;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Workflow extends Model
 {
-    use HasSlug, AssetPath;
+    use HasSlug, RepositoryAssets;
 
     public $with = ['app'];
 
@@ -59,7 +59,7 @@ class Workflow extends Model
 
     public function getStatusAttribute()
     {
-        return is_null($this->published_at) ? 'draft' : 'published';
+        return is_null($this->published_at) ? 'staging' : 'published';
     }
 
     public function storeImport()
@@ -83,6 +83,11 @@ class Workflow extends Model
             : ['Checkout', 'Looks cool', 'Woohoo'][rand(0, 2)];
 
         return  "$emoji $prefix: {$this->title} using Laravel Nova";
+    }
+
+    public function authVote()
+    {
+        return optional(auth()->user())->getVoteFor($this);
     }
 
     public function app()

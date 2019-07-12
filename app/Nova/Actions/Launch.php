@@ -2,11 +2,11 @@
 
 namespace App\Nova\Actions;
 
-use App\Jobs\LaunchWorkflow;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Actions\Action;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Fields\ActionFields;
+use App\Jobs\Workflows\LaunchWorkflow;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

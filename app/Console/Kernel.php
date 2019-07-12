@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use App\Jobs\WorkflowStats;
+use App\Jobs\Workflows\WorkflowStats;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

@@ -11,14 +11,11 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'workflow_id' => 'nullable|exists:workflows,id'
         ]);
 
-        if ($request->has('workflow_id')) {
-            Workflow::findOrFail($request->workflow_id);
-        }
-
-        $subscription = Subscription::firstOrCreate(
+        Subscription::firstOrCreate(
             $request->only(['email', 'workflow_id'])
         );
 

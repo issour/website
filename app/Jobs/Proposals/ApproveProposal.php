@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Proposals;
 
 use App\Workflow;
-use App\Jobs\GenerateImages;
-use App\Jobs\ConvertProposal;
 use Illuminate\Bus\Queueable;
 use App\Jobs\Github\TagRepository;
 use App\Jobs\Github\FillRepository;
 use App\Jobs\Github\CreateRepository;
+use App\Jobs\Workflows\GenerateImages;
 use Illuminate\Queue\SerializesModels;
+use App\Jobs\Proposals\ConvertProposal;
+use App\Notifications\ProposalApproval;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use App\Jobs\Proposals\ApprovalNotification;
 
 class ApproveProposal implements ShouldQueue
 {
@@ -37,6 +39,15 @@ class ApproveProposal implements ShouldQueue
      */
     public function handle()
     {
+        abort_if(!is_null($this->proposal->approved_at), 500, 'Proposal already approved');
+
+        abort_if(is_null($this->proposal->app), 500, 'Proposal approval requires app');
+
+        $this->proposal->update([
+            'approved_at' => now(),
+            'rejected_at' => null,
+        ]);
+
         $repository = $this->proposal->repository;
 
         $this->chain([
@@ -47,8 +58,9 @@ class ApproveProposal implements ShouldQueue
             new FillRepository(
                 $repository,
                 resource_path($this->proposal->stub),
-                $this->proposal->load('app')->toArray()
+                $this->proposal->toArray()
             ),
+            new ApprovalNotification($this->proposal),
         ]);
     }
 

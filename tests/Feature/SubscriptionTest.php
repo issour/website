@@ -97,7 +97,9 @@ class SubscriptionTest extends TestCase
             'workflow_id' => '4342',
         ]);
 
-        $response->assertNotFound();
+        $response->assertSessionHasErrors([
+            'workflow_id' => 'The selected workflow id is invalid.'
+        ]);
 
         $this->assertEquals(0, Subscription::count());
     }

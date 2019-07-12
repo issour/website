@@ -2,12 +2,13 @@
 
 namespace App;
 
-use App\Traits\AssetPath;
+use App\Traits\RepositoryAssets;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Proposal extends Model
 {
-    use AssetPath;
+    use RepositoryAssets, Notifiable;
 
     public $appends = ['status'];
 
