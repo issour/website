@@ -43,11 +43,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Workflow::class, 'votes')->withTimestamps();
     }
 
-    public function voteFor($workflow)
+    public function getVoteFor($workflow)
     {
         return Vote::where([
-            'user_id' => $this->id,
             'workflow_id' => $workflow->id,
+            'user_id' => $this->id,
         ])->first();
     }
 }

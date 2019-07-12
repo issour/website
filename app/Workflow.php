@@ -85,6 +85,11 @@ class Workflow extends Model
         return  "$emoji $prefix: {$this->title} using Laravel Nova";
     }
 
+    public function authVote()
+    {
+        return optional(auth()->user())->getVoteFor($this);
+    }
+
     public function app()
     {
         return $this->belongsTo(App::class);
