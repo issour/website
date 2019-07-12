@@ -5,14 +5,14 @@ namespace App;
 use App\User;
 use App\Subscription;
 use App\Traits\HasSlug;
-use App\Traits\AssetPath;
 use Illuminate\Support\Arr;
+use App\Traits\RepositoryAssets;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Workflow extends Model
 {
-    use HasSlug, AssetPath;
+    use HasSlug, RepositoryAssets;
 
     public $with = ['app'];
 
