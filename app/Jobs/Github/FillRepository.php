@@ -51,7 +51,7 @@ class FillRepository implements ShouldQueue
         return "https://api.github.com/repos/{$this->owner}/{$this->repository}/contents/$path?access_token={$this->token}";
     }
 
-    protected function variables()
+    public function variables()
     {
         return [
             'app' => Arr::get($this->values, 'app.title'),
