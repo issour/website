@@ -15,7 +15,7 @@ class SubscriptionController extends Controller
             'workflow_id' => 'nullable|exists:workflows,id'
         ]);
 
-        $subscription = Subscription::firstOrCreate(
+        Subscription::firstOrCreate(
             $request->only(['email', 'workflow_id'])
         );
 
