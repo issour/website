@@ -18,6 +18,7 @@ class ProposalController extends Controller
             'title' => ['required','min:10','max:60'],
             'description' => ['required','min:20','max:500'],
             'url' => ['required','url'],
+            'email' => ['nullable', 'email'],
         ]);
 
         Proposal::create(

@@ -73,6 +73,22 @@ class ProposalTest extends TestCase
         ]);
     }
 
+    public function testCanSeeEmailFieldIsOptional()
+    {
+        $this->get('/new')->assertSee('Email: (optional)');
+    }
+
+    public function testCanOptionallySubmitValidEmail()
+    {
+        $response = $this->post('/new', [
+            'email' => 'blah'
+        ]);
+
+        $response->assertSessionHasErrors([
+            'email' => 'The email must be a valid email address.',
+        ]);
+    }
+
     public function testSubmittingValidRequestCreatesRequest()
     {
         $response = $this->post('/new', [

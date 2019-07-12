@@ -17,3 +17,10 @@ $factory->afterMakingState(Proposal::class, 'with-logo', function ($proposal, $f
     mkdir($proposal->path());
     copy(base_path('tests/Assets/logo.png'), $proposal->path('logo.png'));
 });
+
+$factory->state(Proposal::class, 'with-email', function (Faker $faker) {
+    return [
+        'email' => $faker->email,
+    ];
+});
+

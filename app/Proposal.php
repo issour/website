@@ -4,10 +4,11 @@ namespace App;
 
 use App\Traits\AssetPath;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Proposal extends Model
 {
-    use AssetPath;
+    use AssetPath, Notifiable;
 
     public $appends = ['status'];
 

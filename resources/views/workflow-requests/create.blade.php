@@ -27,6 +27,11 @@
                             @error('description')
                                 <div class="text-red-500">{{ $errors->first('description') }}</div>
                             @enderror
+                            <p class="pb-2 font-bold mt-6">Notification Email: (optional)</p>
+                            <input type="text" value="{{ old('email') }}" name="email" class="border bg-gray-100 focus:bg-white focus:border-b w-full h-12 p-3" placeholder="email@example.com">
+                            @error('email')
+                                <div class="text-red-500">{{ $errors->first('email') }}</div>
+                            @enderror
                             <button type="submit" class="ml-auto mt-8 rounded-full uppercase border-b-4 border-blue-700 hover:bg-blue-400 font-bold leading-loose text-sm block mx-8 py-3 px-6 bg-blue-500 text-white text-center">
                                 <span>Send Request</span>
                             </button>
