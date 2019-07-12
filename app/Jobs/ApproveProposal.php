@@ -37,6 +37,8 @@ class ApproveProposal implements ShouldQueue
      */
     public function handle()
     {
+        abort_if(!is_null($this->proposal->approved_at), 500, 'Proposal already approved');
+
         $repository = $this->proposal->repository;
 
         $this->chain([

@@ -15,6 +15,13 @@ class ProposalApprovalTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function testCantApproveApprovedProposals()
+    {
+        $this->expectExceptionMessage('Proposal already approved');
+        $proposal = factory(Proposal::class)->state('approved')->create();
+        dispatch(new ApproveProposal($proposal));
+    }
+
     public function testApprovingProposals()
     {
         $proposal = factory(Proposal::class)->state('with-logo')->create([
