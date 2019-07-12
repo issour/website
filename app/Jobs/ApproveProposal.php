@@ -39,6 +39,8 @@ class ApproveProposal implements ShouldQueue
     {
         abort_if(!is_null($this->proposal->approved_at), 500, 'Proposal already approved');
 
+        abort_if(is_null($this->proposal->app), 500, 'Proposal approval requires app');
+
         $repository = $this->proposal->repository;
 
         $this->chain([

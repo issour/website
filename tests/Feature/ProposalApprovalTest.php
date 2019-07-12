@@ -22,6 +22,13 @@ class ProposalApprovalTest extends TestCase
         dispatch(new ApproveProposal($proposal));
     }
 
+    public function testCantApproveProposalWithoutApp()
+    {
+        $this->expectExceptionMessage('Proposal approval requires app');
+        $proposal = factory(Proposal::class)->create();
+        dispatch(new ApproveProposal($proposal));
+    }
+
     public function testApprovingProposals()
     {
         $proposal = factory(Proposal::class)->state('with-logo')->create([
