@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
 @push('head')
-<meta name="nova" content="resource=recipes, id={{$recipe->id}}" />
-<link rel="stylesheet" href="{{ mix('css/markdown.css') }}">
+    <meta name="nova" content="resource=recipes, id={{$recipe->id}}" />
+    <link rel="stylesheet" href="{{ mix('css/markdown.css') }}">
 @endpush
 
 @section('content')
-
     <div class="container mx-auto flex pt-6">
-
         <div class="w-4/5">
             <div class="bg-white p-12 rounded">
                 <div class="flex mb-6">
@@ -26,5 +24,4 @@
             </div>
         </div>
     </div>
-
-    @endsection
+@endsection
