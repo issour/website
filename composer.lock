@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b988407ce82d3098038c30d26ea6099",
+    "content-hash": "ccaae3a351dfc62716b7d1a1c31a1fe7",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -103,6 +103,48 @@
                 "nova"
             ],
             "time": "2019-07-06T10:05:10+00:00"
+        },
+        {
+            "name": "dillingham/nova-list-card",
+            "version": "0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dillingham/nova-list-card.git",
+                "reference": "cb8e5b4a9db0019efaf85349f9f5faaf8f332cf0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dillingham/nova-list-card/zipball/cb8e5b4a9db0019efaf85349f9f5faaf8f332cf0",
+                "reference": "cb8e5b4a9db0019efaf85349f9f5faaf8f332cf0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0",
+                "watson/aggregate": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NovaListCard\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NovaListCard\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "List Nova Resources",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-04-29T03:58:32+00:00"
         },
         {
             "name": "dillingham/stubs",
@@ -3886,6 +3928,61 @@
                 "environment"
             ],
             "time": "2019-06-15T22:40:20+00:00"
+        },
+        {
+            "name": "watson/aggregate",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dwightwatson/aggregate.git",
+                "reference": "366152c028e834a0f4b433abb7614d998d19dc7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dwightwatson/aggregate/zipball/366152c028e834a0f4b433abb7614d998d19dc7f",
+                "reference": "366152c028e834a0f4b433abb7614d998d19dc7f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.7",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Watson\\Aggregate\\AggregateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Watson\\Aggregate\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dwight Watson",
+                    "email": "dwight@studiousapp.com"
+                }
+            ],
+            "description": "Extend Laravel's query builder with additional relation aggregates.",
+            "homepage": "https://github.com/dwightwatson/aggregate",
+            "keywords": [
+                "aggregations",
+                "eloquent",
+                "laravel"
+            ],
+            "time": "2018-10-10T00:47:41+00:00"
         }
     ],
     "packages-dev": [
