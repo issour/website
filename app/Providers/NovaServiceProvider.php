@@ -3,8 +3,16 @@
 namespace App\Providers;
 
 use Laravel\Nova\Nova;
-use Laravel\Nova\Cards\Help;
+use App\Nova\Metrics\MostVoted;
+use App\Nova\Metrics\RecentVotes;
+use App\Nova\Metrics\MostSubscribed;
 use Illuminate\Support\Facades\Gate;
+use App\Nova\Metrics\OldestProposals;
+use App\Nova\Metrics\RecentProposals;
+use App\Nova\Metrics\CountVotesCreated;
+use App\Nova\Metrics\RecentSubscriptions;
+use App\Nova\Metrics\CountProposalsCreated;
+use App\Nova\Metrics\CountSubscriptionsCreated;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -56,7 +64,15 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            new CountProposalsCreated,
+            new CountSubscriptionsCreated,
+            new CountVotesCreated,
+            new RecentProposals,
+            new RecentSubscriptions,
+            new RecentVotes,
+            new MostVoted,
+            new MostSubscribed,
+            new OldestProposals,
         ];
     }
 
