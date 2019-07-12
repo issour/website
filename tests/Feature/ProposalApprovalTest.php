@@ -61,4 +61,18 @@ class ProposalApprovalTest extends TestCase
         $this->assertEquals(1, Workflow::staging()->count());
         $this->assertEquals('staging', Workflow::staging()->first()->status);
     }
+
+    public function testApprovedProposalCreatesSubscriber()
+    {
+        $this->mock(Client::class, function ($mock) {
+            $mock->shouldReceive('request');
+        });
+
+        $proposal = factory(Proposal::class)->states('action-fields', 'with-email')->create();
+
+        dispatch(new ApproveProposal($proposal));
+
+        $this->assertEquals(1, Subscription::count());
+        $this->assertEquals($proposal->email, Subscription::first()->email);
+    }
 }
