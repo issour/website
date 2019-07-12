@@ -7,7 +7,7 @@ use App\Proposal;
 use App\Workflow;
 use Tests\TestCase;
 use GuzzleHttp\Client;
-use App\Jobs\ApproveProposal;
+use App\Jobs\Proposals\ApproveProposal;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ProposalTest extends TestCase

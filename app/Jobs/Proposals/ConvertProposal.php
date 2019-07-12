@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Proposals;
 
 use App\Workflow;
 use Illuminate\Support\Str;

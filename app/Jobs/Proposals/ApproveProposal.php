@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Proposals;
 
 use App\Workflow;
 use App\Jobs\GenerateImages;
-use App\Jobs\ConvertProposal;
 use Illuminate\Bus\Queueable;
 use App\Jobs\Github\TagRepository;
 use App\Jobs\Github\FillRepository;
 use App\Jobs\Github\CreateRepository;
 use Illuminate\Queue\SerializesModels;
+use App\Jobs\Proposals\ConvertProposal;
 use App\Notifications\ProposalApproval;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Jobs\SendProposalApprovalNotification;
+use App\Jobs\Proposals\ApprovalNotification;
 
 class ApproveProposal implements ShouldQueue
 {
@@ -60,7 +60,7 @@ class ApproveProposal implements ShouldQueue
                 resource_path($this->proposal->stub),
                 $this->proposal->toArray()
             ),
-            new SendProposalApprovalNotification($this->proposal),
+            new ApprovalNotification($this->proposal),
         ]);
     }
 

@@ -3,8 +3,6 @@
 namespace App\Nova\Actions;
 
 use App\App;
-use App\Jobs\ApproveProposal;
-use App\Jobs\ConvertProposal;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Fields\Text;
 use App\Jobs\CreateRepository;
@@ -14,6 +12,8 @@ use Laravel\Nova\Actions\Action;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Fields\ActionFields;
 use Illuminate\Queue\SerializesModels;
+use App\Jobs\Proposals\ApproveProposal;
+use App\Jobs\Proposals\ConvertProposal;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

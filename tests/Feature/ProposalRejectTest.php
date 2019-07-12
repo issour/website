@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Proposal;
 use Tests\TestCase;
-use App\Jobs\RejectProposal;
+use App\Jobs\Proposals\RejectProposal;
 use App\Notifications\ProposalRejection;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
