@@ -2,6 +2,7 @@
 
 namespace App\Nova\Actions;
 
+use App\Jobs\RejectProposal;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Actions\Action;
 use Illuminate\Support\Collection;
@@ -21,9 +22,11 @@ class Reject extends Action
      * @param  \Illuminate\Support\Collection  $models
      * @return mixed
      */
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $proposals)
     {
-        $models->each->update(['rejected_at' => now()]);
+        $proposals->each(function ($proposal) {
+            dispatch(new RejectProposal($proposal));
+        });
     }
 
     /**
