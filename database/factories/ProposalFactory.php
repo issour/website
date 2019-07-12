@@ -24,3 +24,14 @@ $factory->state(Proposal::class, 'with-email', function (Faker $faker) {
     ];
 });
 
+$factory->state(Proposal::class, 'approved', function (Faker $faker) {
+    return [
+        'approved_at' => now()->subDays(rand(1, 30)),
+    ];
+});
+
+$factory->state(Proposal::class, 'rejected', function (Faker $faker) {
+    return [
+        'rejected_at' => now()->subDays(rand(1, 30)),
+    ];
+});

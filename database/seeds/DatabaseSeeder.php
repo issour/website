@@ -27,7 +27,9 @@ class DatabaseSeeder extends Seeder
 
         factory(Workflow::class, 100)->state('live')->create();
         factory(Workflow::class, 100)->state('staging')->create();
-        factory(Proposal::class, 100)->create();
+        factory(Proposal::class, 10)->create();
+        factory(Proposal::class, 10)->state('approved')->create();
+        factory(Proposal::class, 10)->state('rejected')->create();
         factory(Recipe::class, 100)->create();
         factory(Subscription::class, 100)->state('workflow')->create();
         factory(Subscription::class, 100)->create();
