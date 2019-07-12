@@ -13,7 +13,6 @@ use Illuminate\Support\Collection;
 use Laravel\Nova\Fields\ActionFields;
 use Illuminate\Queue\SerializesModels;
 use App\Jobs\Proposals\ApproveProposal;
-use App\Jobs\Proposals\ConvertProposal;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
