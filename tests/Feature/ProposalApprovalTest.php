@@ -29,6 +29,21 @@ class ProposalApprovalTest extends TestCase
         dispatch(new ApproveProposal($proposal));
     }
 
+    public function testCanApproveRejectedProposals()
+    {
+        $this->mock(Client::class, function ($mock) {
+            $mock->shouldReceive('request');
+        });
+
+        $proposal = factory(Proposal::class)->states('rejected', 'action-fields')->create();
+        dispatch(new ApproveProposal($proposal));
+
+        tap($proposal->fresh(), function ($proposal) {
+            $this->assertNotNull($proposal->approved_at);
+            $this->assertNull($proposal->rejected_at);
+        });
+    }
+
     public function testApprovingProposals()
     {
         $proposal = factory(Proposal::class)->state('with-logo')->create([

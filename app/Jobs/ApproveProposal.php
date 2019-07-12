@@ -41,6 +41,11 @@ class ApproveProposal implements ShouldQueue
 
         abort_if(is_null($this->proposal->app), 500, 'Proposal approval requires app');
 
+        $this->proposal->update([
+            'approved_at' => now(),
+            'rejected_at' => null,
+        ]);
+
         $repository = $this->proposal->repository;
 
         $this->chain([
@@ -51,7 +56,7 @@ class ApproveProposal implements ShouldQueue
             new FillRepository(
                 $repository,
                 resource_path($this->proposal->stub),
-                $this->proposal->load('app')->toArray()
+                $this->proposal->toArray()
             ),
         ]);
     }
