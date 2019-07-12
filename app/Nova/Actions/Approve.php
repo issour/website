@@ -27,18 +27,15 @@ class Approve extends Action
     {
         $proposal = $proposals->first();
 
-        abort_if(!is_null($proposal->approved_at), 500, 'Proposal already approved');
-
         $fields->logo->move(storage_path("app/public/{$fields->repository}"), 'logo.png');
 
         $proposal->update([
             'app_id' => $fields->app_id,
             'repository' => $fields->repository,
             'stub' => 'stubs/outcome',
-            'approved_at' => now(),
         ]);
 
-        dispatch(new ApproveProposal($proposal->fresh()));
+        dispatch(new ApproveProposal($proposal));
     }
 
     /**

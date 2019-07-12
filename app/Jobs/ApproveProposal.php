@@ -10,9 +10,11 @@ use App\Jobs\Github\TagRepository;
 use App\Jobs\Github\FillRepository;
 use App\Jobs\Github\CreateRepository;
 use Illuminate\Queue\SerializesModels;
+use App\Notifications\ProposalApproval;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use App\Jobs\SendProposalApprovalNotification;
 
 class ApproveProposal implements ShouldQueue
 {
@@ -58,6 +60,7 @@ class ApproveProposal implements ShouldQueue
                 resource_path($this->proposal->stub),
                 $this->proposal->toArray()
             ),
+            new SendProposalApprovalNotification($this->proposal),
         ]);
     }
 
