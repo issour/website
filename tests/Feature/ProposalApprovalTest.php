@@ -59,6 +59,6 @@ class ProposalApprovalTest extends TestCase
         dispatch(new ApproveProposal($proposal));
 
         $this->assertEquals(1, Workflow::staging()->count());
-        $this->assertEquals('draft', Workflow::staging()->first()->status);
+        $this->assertEquals('staging', Workflow::staging()->first()->status);
     }
 }

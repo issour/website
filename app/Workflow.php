@@ -59,7 +59,7 @@ class Workflow extends Model
 
     public function getStatusAttribute()
     {
-        return is_null($this->published_at) ? 'draft' : 'published';
+        return is_null($this->published_at) ? 'staging' : 'published';
     }
 
     public function storeImport()
