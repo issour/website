@@ -3,11 +3,11 @@
 namespace App\Jobs\Proposals;
 
 use App\Workflow;
-use App\Jobs\GenerateImages;
 use Illuminate\Bus\Queueable;
 use App\Jobs\Github\TagRepository;
 use App\Jobs\Github\FillRepository;
 use App\Jobs\Github\CreateRepository;
+use App\Jobs\Workflows\GenerateImages;
 use Illuminate\Queue\SerializesModels;
 use App\Jobs\Proposals\ConvertProposal;
 use App\Notifications\ProposalApproval;

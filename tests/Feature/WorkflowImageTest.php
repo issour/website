@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Workflow;
 use Tests\TestCase;
-use App\Jobs\GenerateImages;
+use App\Jobs\Workflows\GenerateImages;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
